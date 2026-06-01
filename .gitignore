@@ -24,3 +24,9 @@ Thumbs.db
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+# AI and Backup files
+AGENTS.md
+CLAUDE.md
+.git_backup/
+
