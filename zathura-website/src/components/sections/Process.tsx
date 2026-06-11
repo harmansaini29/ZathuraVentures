@@ -55,7 +55,7 @@ function Step({
     <motion.div
       ref={ref}
       initial={{ opacity: 0, x: index % 2 === 0 ? -40 : 40 }}
-      animate={inView ? { opacity: 1, x: 0 } : {}}
+      animate={inView ? { opacity: 1, x: 0 } : { opacity: 0, x: index % 2 === 0 ? -40 : 40 }}
       transition={{ duration: 0.7, delay: index * 0.15, ease: "easeOut" }}
       style={{
         display: "flex",
@@ -100,7 +100,7 @@ function Step({
         {!isLast && (
           <motion.div
             initial={{ scaleY: 0 }}
-            animate={inView ? { scaleY: 1 } : {}}
+            animate={inView ? { scaleY: 1 } : { scaleY: 0 }}
             transition={{ duration: 0.8, delay: index * 0.15 + 0.4, ease: "easeOut" }}
             style={{
               width: "1px",
@@ -188,7 +188,7 @@ export default function Process() {
         <motion.div
           ref={headRef}
           initial={{ opacity: 0, y: 24 }}
-          animate={headInView ? { opacity: 1, y: 0 } : {}}
+          animate={headInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 24 }}
           transition={{ duration: 0.6 }}
           style={{ position: "sticky", top: "120px" }}
           className="process-header"

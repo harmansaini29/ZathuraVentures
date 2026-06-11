@@ -41,7 +41,7 @@ export default function Testimonials() {
         <motion.div
           ref={headRef}
           initial={{ opacity: 0, y: 24 }}
-          animate={headInView ? { opacity: 1, y: 0 } : {}}
+          animate={headInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 24 }}
           transition={{ duration: 0.6 }}
           style={{ textAlign: "center", marginBottom: "4rem" }}
         >
@@ -75,7 +75,7 @@ export default function Testimonials() {
         {/* Testimonial card */}
         <motion.div
           initial={{ opacity: 0, y: 24 }}
-          animate={headInView ? { opacity: 1, y: 0 } : {}}
+          animate={headInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 24 }}
           transition={{ duration: 0.6, delay: 0.2 }}
           onMouseEnter={() => setPaused(true)}
           onMouseLeave={() => setPaused(false)}

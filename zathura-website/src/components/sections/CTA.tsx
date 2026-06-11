@@ -17,7 +17,7 @@ export default function CTA() {
         <motion.div
           ref={ref}
           initial={{ opacity: 0, y: 40 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
+          animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }}
           transition={{ duration: 0.8, ease: "easeOut" }}
           style={{
             background: "var(--bg-secondary)",
@@ -81,7 +81,7 @@ export default function CTA() {
           <div style={{ position: "relative", zIndex: 1 }}>
             <motion.span
               initial={{ opacity: 0 }}
-              animate={inView ? { opacity: 1 } : {}}
+              animate={inView ? { opacity: 1 } : { opacity: 0 }}
               transition={{ delay: 0.2 }}
               style={{
                 fontFamily: "'Inter', sans-serif",
@@ -99,7 +99,7 @@ export default function CTA() {
 
             <motion.h2
               initial={{ opacity: 0, y: 20 }}
-              animate={inView ? { opacity: 1, y: 0 } : {}}
+              animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
               transition={{ delay: 0.3, duration: 0.7 }}
               style={{
                 fontFamily: "'Space Grotesk', sans-serif",
@@ -127,7 +127,7 @@ export default function CTA() {
 
             <motion.p
               initial={{ opacity: 0, y: 16 }}
-              animate={inView ? { opacity: 1, y: 0 } : {}}
+              animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 16 }}
               transition={{ delay: 0.45, duration: 0.6 }}
               style={{
                 fontFamily: "'Inter', sans-serif",
@@ -144,7 +144,7 @@ export default function CTA() {
 
             <motion.div
               initial={{ opacity: 0, scale: 0.95 }}
-              animate={inView ? { opacity: 1, scale: 1 } : {}}
+              animate={inView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.95 }}
               transition={{ delay: 0.6 }}
               style={{ display: "flex", gap: "1rem", justifyContent: "center", flexWrap: "wrap" }}
             >

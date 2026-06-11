@@ -32,7 +32,7 @@ function StatCard({ stat, index }: { stat: (typeof stats)[0]; index: number }) {
     <motion.div
       ref={ref}
       initial={{ opacity: 0, y: 32 }}
-      animate={inView ? { opacity: 1, y: 0 } : {}}
+      animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 32 }}
       transition={{ duration: 0.7, delay: index * 0.12, ease: "easeOut" }}
       style={{
         textAlign: "center",
@@ -91,7 +91,7 @@ function StatCard({ stat, index }: { stat: (typeof stats)[0]; index: number }) {
         {stat.isText ? (
           <motion.span
             initial={{ opacity: 0, scale: 0.85 }}
-            animate={inView ? { opacity: 1, scale: 1 } : {}}
+            animate={inView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.85 }}
             transition={{ duration: 0.6, delay: index * 0.12 + 0.2 }}
           >
             {stat.textValue}
@@ -150,7 +150,7 @@ export default function Impact() {
         <motion.div
           ref={headRef}
           initial={{ opacity: 0, y: 24 }}
-          animate={headInView ? { opacity: 1, y: 0 } : {}}
+          animate={headInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 24 }}
           transition={{ duration: 0.6 }}
           style={{ textAlign: "center", marginBottom: "4rem" }}
         >

@@ -26,7 +26,7 @@ export default function Ventures() {
         <motion.div
           ref={headRef}
           initial={{ opacity: 0, y: 24 }}
-          animate={headInView ? { opacity: 1, y: 0 } : {}}
+          animate={headInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 24 }}
           transition={{ duration: 0.6 }}
           style={{
             display: "flex",

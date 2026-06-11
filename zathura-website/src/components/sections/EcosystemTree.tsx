@@ -173,6 +173,7 @@ export default function EcosystemTree() {
                 y2={y}
                 stroke={isHovered ? node.color : "rgba(255,255,255,0.1)"}
                 strokeWidth={isHovered ? 2 : 1}
+                initial={{ opacity: 0.5 }}
                 animate={{
                   opacity: isDimmed ? 0.2 : isHovered ? 1 : 0.5,
                 }}
@@ -233,7 +234,7 @@ export default function EcosystemTree() {
                   el.scrollIntoView({ behavior: "smooth", block: "start" });
                 }
               }}
-              initial={{ opacity: 0, scale: 0.8 }}
+              initial={{ opacity: isDimmed ? 0.3 : 1, scale: 0.8 }}
               animate={{
                 opacity: isDimmed ? 0.3 : 1,
                 scale: isHovered ? 1.05 : 1,
