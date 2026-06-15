@@ -48,8 +48,8 @@ export default function Footer() {
   return (
     <footer
       style={{
-        background: "var(--bg-secondary)",
-        borderTop: "1px solid var(--border-color)",
+        background: "var(--surface-container-low)",
+        borderTop: "1px solid var(--outline-variant)",
       }}
     >
       <div
@@ -84,15 +84,15 @@ export default function Footer() {
                 style={{
                   width: "36px",
                   height: "36px",
-                  borderRadius: "8px",
-                  background: "linear-gradient(135deg, #EAB308, #CA8A04)",
+                  borderRadius: "10px",
+                  background: "linear-gradient(135deg, #c8102e, #0088ff)",
                   display: "flex",
                   alignItems: "center",
                   justifyContent: "center",
-                  fontFamily: "'Space Grotesk', sans-serif",
-                  fontWeight: 700,
-                  fontSize: "16px",
-                  color: "#070B14",
+                  fontFamily: "'Playfair Display', serif",
+                  fontWeight: 800,
+                  fontSize: "14px",
+                  color: "#fff",
                   flexShrink: 0,
                 }}
               >
@@ -100,14 +100,14 @@ export default function Footer() {
               </div>
               <span
                 style={{
-                  fontFamily: "'Space Grotesk', sans-serif",
+                  fontFamily: "'Playfair Display', serif",
                   fontWeight: 700,
                   fontSize: "1.1rem",
-                  color: "var(--text-primary)",
-                  letterSpacing: "-0.02em",
+                  color: "var(--on-surface)",
+                  letterSpacing: "-0.01em",
                 }}
               >
-                Zathura Ventures
+                Zathura<span style={{ color: "var(--ancient-gold)" }}>.</span>
               </span>
             </div>
 
@@ -115,7 +115,7 @@ export default function Footer() {
               style={{
                 fontFamily: "'Inter', sans-serif",
                 fontSize: "0.9rem",
-                color: "var(--text-secondary)",
+                color: "var(--on-surface-variant)",
                 lineHeight: 1.75,
                 maxWidth: "320px",
                 marginBottom: "1.75rem",
@@ -138,9 +138,9 @@ export default function Footer() {
                     width: "38px",
                     height: "38px",
                     borderRadius: "9px",
-                    border: "1px solid var(--border-color)",
-                    background: "var(--bg-card)",
-                    color: "var(--text-muted)",
+                    border: "1px solid var(--outline-variant)",
+                    background: "var(--surface-container)",
+                    color: "var(--on-surface-variant)",
                     display: "flex",
                     alignItems: "center",
                     justifyContent: "center",
@@ -148,14 +148,14 @@ export default function Footer() {
                     transition: "all 0.2s ease",
                   }}
                   onMouseEnter={(e) => {
-                    (e.currentTarget as HTMLAnchorElement).style.borderColor = "#EAB308";
-                    (e.currentTarget as HTMLAnchorElement).style.color = "#EAB308";
-                    (e.currentTarget as HTMLAnchorElement).style.background = "rgba(234,179,8,0.06)";
+                    (e.currentTarget as HTMLAnchorElement).style.borderColor = "var(--electric-blue)";
+                    (e.currentTarget as HTMLAnchorElement).style.color = "var(--electric-blue)";
+                    (e.currentTarget as HTMLAnchorElement).style.background = "rgba(200, 16, 46, 0.06)";
                   }}
                   onMouseLeave={(e) => {
-                    (e.currentTarget as HTMLAnchorElement).style.borderColor = "var(--border-color)";
-                    (e.currentTarget as HTMLAnchorElement).style.color = "var(--text-muted)";
-                    (e.currentTarget as HTMLAnchorElement).style.background = "var(--bg-card)";
+                    (e.currentTarget as HTMLAnchorElement).style.borderColor = "var(--outline-variant)";
+                    (e.currentTarget as HTMLAnchorElement).style.color = "var(--on-surface-variant)";
+                    (e.currentTarget as HTMLAnchorElement).style.background = "var(--surface-container)";
                   }}
                 >
                   {social.icon}
@@ -168,10 +168,10 @@ export default function Footer() {
           <div>
             <h4
               style={{
-                fontFamily: "'Space Grotesk', sans-serif",
+                fontFamily: "'Playfair Display', serif",
                 fontSize: "0.9rem",
                 fontWeight: 700,
-                color: "var(--text-primary)",
+                color: "var(--on-surface)",
                 letterSpacing: "-0.01em",
                 marginBottom: "1.25rem",
               }}
@@ -195,10 +195,10 @@ export default function Footer() {
                     transition: "color 0.2s",
                   }}
                   onMouseEnter={(e) =>
-                    ((e.currentTarget as HTMLButtonElement).style.color = "#EAB308")
+                    ((e.currentTarget as HTMLButtonElement).style.color = "var(--electric-blue)")
                   }
                   onMouseLeave={(e) =>
-                    ((e.currentTarget as HTMLButtonElement).style.color = "var(--text-secondary)")
+                    ((e.currentTarget as HTMLButtonElement).style.color = "var(--on-surface-variant)")
                   }
                 >
                   {link.label}
@@ -241,7 +241,7 @@ export default function Footer() {
         {/* Bottom bar */}
         <div
           style={{
-            borderTop: "1px solid var(--border-color)",
+            borderTop: "1px solid var(--outline-variant)",
             paddingTop: "2rem",
             display: "flex",
             alignItems: "center",
@@ -254,7 +254,8 @@ export default function Footer() {
             style={{
               fontFamily: "'Inter', sans-serif",
               fontSize: "0.82rem",
-              color: "var(--text-muted)",
+              color: "var(--on-surface-variant)",
+              opacity: 0.6,
             }}
           >
             &copy; {new Date().getFullYear()} Zathura Ventures. All Rights Reserved.
@@ -268,7 +269,8 @@ export default function Footer() {
                 style={{
                   fontFamily: "'Inter', sans-serif",
                   fontSize: "0.82rem",
-                  color: "var(--text-muted)",
+                  color: "var(--on-surface-variant)",
+                  opacity: 0.6,
                   textDecoration: "none",
                   transition: "color 0.2s",
                 }}

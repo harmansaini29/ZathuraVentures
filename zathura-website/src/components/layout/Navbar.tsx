@@ -1,338 +1,228 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import Link from "next/link";
-import { useTheme } from "next-themes";
 import { motion, AnimatePresence } from "framer-motion";
-import { Sun, Moon, Menu, X } from "lucide-react";
 
 const navLinks = [
-  { href: "#home", label: "Home" },
-  { href: "#services", label: "Services" },
-  { href: "#ventures", label: "Ventures" },
-  { href: "#team", label: "Team" },
-  { href: "#contact", label: "Contact" },
+  { label: "Home", href: "#home" },
+  { label: "Services", href: "#services" },
+  { label: "About", href: "#about-team" },
+  { label: "Portfolio", href: "#portfolio" },
+  { label: "Contact", href: "#contact" },
 ];
 
 export default function Navbar() {
-  const { theme, setTheme, resolvedTheme } = useTheme();
-  const [mounted, setMounted] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
 
   useEffect(() => {
-    setMounted(true);
-    const handleScroll = () => setScrolled(window.scrollY > 24);
+    const handleScroll = () => setScrolled(window.scrollY > 50);
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const isDark = resolvedTheme === "dark";
-
-  const handleNavClick = (href: string) => {
-    setMobileOpen(false);
-    const el = document.querySelector(href);
-    if (el) {
-      el.scrollIntoView({ behavior: "smooth" });
-    }
-  };
-
   return (
-    <>
-      <motion.nav
-        initial={{ y: -80, opacity: 0 }}
-        animate={{ y: 0, opacity: 1 }}
-        transition={{ duration: 0.6, ease: "easeOut", delay: 0.2 }}
+    <motion.nav
+      initial={{ y: -100, opacity: 0 }}
+      animate={{ y: 0, opacity: 1 }}
+      transition={{ duration: 0.8, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
+      style={{
+        position: "fixed",
+        top: 0,
+        left: 0,
+        right: 0,
+        zIndex: 1000,
+        padding: "0 2rem",
+      }}
+    >
+      <div
         style={{
-          position: "fixed",
-          top: 0,
-          left: 0,
-          right: 0,
-          zIndex: 100,
-          transition: "all 0.3s ease",
-          backgroundColor: scrolled
-            ? (isDark ? "rgba(7, 11, 20, 0.92)" : "rgba(248, 250, 252, 0.92)")
-            : "transparent",
-          backdropFilter: scrolled ? "blur(12px)" : "none",
-          borderBottom: scrolled
-            ? `1px solid ${isDark ? "rgba(30,41,59,0.8)" : "rgba(226,232,240,0.8)"}`
-            : "1px solid transparent",
+          maxWidth: "1280px",
+          margin: "0.75rem auto",
+          padding: "0.875rem 1.75rem",
+          borderRadius: "16px",
+          background: scrolled
+            ? "rgba(6, 20, 35, 0.75)"
+            : "rgba(6, 20, 35, 0.4)",
+          backdropFilter: "blur(24px)",
+          WebkitBackdropFilter: "blur(24px)",
+          border: `1px solid ${scrolled ? "rgba(200, 16, 46, 0.12)" : "rgba(212, 175, 55, 0.08)"}`,
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "space-between",
+          transition: "all 0.4s ease",
+          boxShadow: scrolled
+            ? "0 8px 32px rgba(0, 0, 0, 0.3)"
+            : "none",
         }}
       >
-        <div
-          style={{
-            maxWidth: "1280px",
-            margin: "0 auto",
-            padding: "0 1.5rem",
-            height: "72px",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "space-between",
-          }}
-        >
-          {/* Logo */}
-          <Link
-            href="#home"
-            onClick={() => handleNavClick("#home")}
-            style={{
-              display: "flex",
-              alignItems: "center",
-              gap: "0.625rem",
-              textDecoration: "none",
-            }}
-          >
-            <div
-              style={{
-                width: "36px",
-                height: "36px",
-                borderRadius: "8px",
-                background: "linear-gradient(135deg, #EAB308, #CA8A04)",
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                fontFamily: "'Space Grotesk', sans-serif",
-                fontWeight: 700,
-                fontSize: "16px",
-                color: "#070B14",
-                letterSpacing: "-0.02em",
-                flexShrink: 0,
-              }}
-            >
-              ZV
-            </div>
-            <span
-              style={{
-                fontFamily: "'Space Grotesk', sans-serif",
-                fontWeight: 700,
-                fontSize: "1.1rem",
-                color: "var(--text-primary)",
-                letterSpacing: "-0.02em",
-              }}
-            >
-              Zathura
-            </span>
-          </Link>
-
-          {/* Desktop Nav Links */}
+        {/* Logo */}
+        <a href="#home" style={{ textDecoration: "none", display: "flex", alignItems: "center", gap: "0.75rem" }}>
           <div
             style={{
+              width: "36px",
+              height: "36px",
+              borderRadius: "10px",
+              background: "linear-gradient(135deg, #c8102e, #0088ff)",
               display: "flex",
               alignItems: "center",
-              gap: "2rem",
+              justifyContent: "center",
+              fontFamily: "'Playfair Display', serif",
+              fontWeight: 800,
+              fontSize: "1.1rem",
+              color: "#fff",
             }}
-            className="hidden md:flex"
           >
-            {navLinks.map((link) => (
-              <button
-                key={link.href}
-                onClick={() => handleNavClick(link.href)}
-                style={{
-                  background: "none",
-                  border: "none",
-                  cursor: "pointer",
-                  fontFamily: "'Inter', sans-serif",
-                  fontSize: "0.9rem",
-                  fontWeight: 500,
-                  color: "var(--text-secondary)",
-                  transition: "color 0.2s ease",
-                  padding: "0.25rem 0",
-                }}
-                onMouseEnter={(e) =>
-                  ((e.currentTarget as HTMLButtonElement).style.color = "var(--text-primary)")
-                }
-                onMouseLeave={(e) =>
-                  ((e.currentTarget as HTMLButtonElement).style.color = "var(--text-secondary)")
-                }
-              >
-                {link.label}
-              </button>
-            ))}
+            ZV
           </div>
+          <span
+            style={{
+              fontFamily: "'Playfair Display', serif",
+              fontSize: "1.15rem",
+              fontWeight: 700,
+              color: "var(--on-surface)",
+              letterSpacing: "-0.01em",
+            }}
+          >
+            Zathura<span style={{ color: "var(--ancient-gold)" }}>.</span>
+          </span>
+        </a>
 
-          {/* Right Side: Theme Toggle + CTA */}
-          <div style={{ display: "flex", alignItems: "center", gap: "0.75rem" }}>
-            {/* Theme Toggle */}
-            {mounted && (
-              <button
-                onClick={() => setTheme(isDark ? "light" : "dark")}
-                aria-label="Toggle theme"
-                style={{
-                  width: "38px",
-                  height: "38px",
-                  borderRadius: "8px",
-                  border: "1px solid var(--border-color)",
-                  background: "var(--bg-card)",
-                  color: "var(--text-secondary)",
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  cursor: "pointer",
-                  transition: "all 0.2s ease",
-                }}
-                onMouseEnter={(e) => {
-                  (e.currentTarget as HTMLButtonElement).style.borderColor = "#EAB308";
-                  (e.currentTarget as HTMLButtonElement).style.color = "#EAB308";
-                }}
-                onMouseLeave={(e) => {
-                  (e.currentTarget as HTMLButtonElement).style.borderColor = "var(--border-color)";
-                  (e.currentTarget as HTMLButtonElement).style.color = "var(--text-secondary)";
-                }}
-              >
-                {isDark ? <Sun size={16} /> : <Moon size={16} />}
-              </button>
-            )}
-
-            {/* CTA Button */}
-            <button
-              onClick={() => handleNavClick("#contact")}
-              className="hidden md:flex"
+        {/* Desktop Links */}
+        <div
+          style={{
+            display: "flex",
+            alignItems: "center",
+            gap: "2rem",
+          }}
+          className="hidden-mobile"
+        >
+          {navLinks.map((link) => (
+            <a
+              key={link.href}
+              href={link.href}
               style={{
-                height: "38px",
-                padding: "0 1.25rem",
-                borderRadius: "8px",
-                background: "#EAB308",
-                color: "#070B14",
                 fontFamily: "'Inter', sans-serif",
-                fontWeight: 600,
-                fontSize: "0.875rem",
-                border: "none",
-                cursor: "pointer",
-                alignItems: "center",
-                gap: "0.375rem",
-                transition: "all 0.2s ease",
-                letterSpacing: "-0.01em",
+                fontSize: "0.85rem",
+                fontWeight: 500,
+                color: "var(--on-surface-variant)",
+                textDecoration: "none",
+                letterSpacing: "0.02em",
+                transition: "color 0.3s ease",
+                position: "relative",
               }}
               onMouseEnter={(e) => {
-                (e.currentTarget as HTMLButtonElement).style.background = "#CA8A04";
-                (e.currentTarget as HTMLButtonElement).style.transform = "translateY(-1px)";
+                (e.currentTarget as HTMLAnchorElement).style.color = "var(--electric-blue)";
               }}
               onMouseLeave={(e) => {
-                (e.currentTarget as HTMLButtonElement).style.background = "#EAB308";
-                (e.currentTarget as HTMLButtonElement).style.transform = "translateY(0)";
+                (e.currentTarget as HTMLAnchorElement).style.color = "var(--on-surface-variant)";
               }}
             >
-              Let&apos;s Build
-            </button>
-
-            {/* Mobile Menu Button */}
-            <button
-              onClick={() => setMobileOpen(!mobileOpen)}
-              className="flex md:hidden"
-              aria-label="Toggle mobile menu"
-              style={{
-                width: "38px",
-                height: "38px",
-                borderRadius: "8px",
-                border: "1px solid var(--border-color)",
-                background: "var(--bg-card)",
-                color: "var(--text-primary)",
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                cursor: "pointer",
-              }}
-            >
-              {mobileOpen ? <X size={18} /> : <Menu size={18} />}
-            </button>
-          </div>
+              {link.label}
+            </a>
+          ))}
+          <a
+            href="mailto:hello@zathuraventures.com"
+            style={{
+              fontFamily: "'Inter', sans-serif",
+              fontSize: "0.8rem",
+              fontWeight: 600,
+              color: "#fff",
+              textDecoration: "none",
+              padding: "0.6rem 1.4rem",
+              borderRadius: "10px",
+              background: "linear-gradient(135deg, #c8102e, #0088ff)",
+              transition: "all 0.3s ease",
+              letterSpacing: "0.02em",
+            }}
+            onMouseEnter={(e) => {
+              (e.currentTarget as HTMLAnchorElement).style.boxShadow = "0 4px 24px rgba(200, 16, 46, 0.3)";
+              (e.currentTarget as HTMLAnchorElement).style.transform = "translateY(-1px)";
+            }}
+            onMouseLeave={(e) => {
+              (e.currentTarget as HTMLAnchorElement).style.boxShadow = "none";
+              (e.currentTarget as HTMLAnchorElement).style.transform = "translateY(0)";
+            }}
+          >
+            Initiate Project
+          </a>
         </div>
-      </motion.nav>
 
-      {/* Mobile Drawer */}
+        {/* Mobile Toggle */}
+        <button
+          onClick={() => setMobileOpen(!mobileOpen)}
+          style={{
+            display: "none",
+            background: "none",
+            border: "none",
+            color: "var(--on-surface)",
+            cursor: "pointer",
+            padding: "0.5rem",
+          }}
+          className="mobile-only"
+          aria-label="Toggle menu"
+        >
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+            {mobileOpen ? (
+              <path d="M18 6L6 18M6 6l12 12" />
+            ) : (
+              <path d="M3 12h18M3 6h18M3 18h18" />
+            )}
+          </svg>
+        </button>
+      </div>
+
+      {/* Mobile Menu */}
       <AnimatePresence>
         {mobileOpen && (
-          <>
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.2 }}
-              onClick={() => setMobileOpen(false)}
-              style={{
-                position: "fixed",
-                inset: 0,
-                background: "rgba(0,0,0,0.5)",
-                zIndex: 98,
-              }}
-            />
-            <motion.div
-              initial={{ x: "100%" }}
-              animate={{ x: 0 }}
-              exit={{ x: "100%" }}
-              transition={{ duration: 0.3, ease: "easeInOut" }}
-              style={{
-                position: "fixed",
-                top: 0,
-                right: 0,
-                bottom: 0,
-                width: "280px",
-                background: "var(--bg-secondary)",
-                borderLeft: "1px solid var(--border-color)",
-                zIndex: 99,
-                padding: "5rem 2rem 2rem",
-                display: "flex",
-                flexDirection: "column",
-                gap: "0.5rem",
-              }}
-            >
-              {navLinks.map((link, i) => (
-                <motion.button
-                  key={link.href}
-                  initial={{ opacity: 0, x: 20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: i * 0.06, duration: 0.3 }}
-                  onClick={() => handleNavClick(link.href)}
-                  style={{
-                    background: "none",
-                    border: "none",
-                    cursor: "pointer",
-                    fontFamily: "'Inter', sans-serif",
-                    fontSize: "1rem",
-                    fontWeight: 500,
-                    color: "var(--text-primary)",
-                    textAlign: "left",
-                    padding: "0.875rem 1rem",
-                    borderRadius: "8px",
-                    transition: "background 0.2s",
-                  }}
-                  onMouseEnter={(e) =>
-                    ((e.currentTarget as HTMLButtonElement).style.background =
-                      "var(--bg-card-hover)")
-                  }
-                  onMouseLeave={(e) =>
-                    ((e.currentTarget as HTMLButtonElement).style.background = "none")
-                  }
-                >
-                  {link.label}
-                </motion.button>
-              ))}
-
-              <div style={{ marginTop: "auto" }}>
-                <button
-                  onClick={() => {
-                    handleNavClick("#contact");
-                    setMobileOpen(false);
-                  }}
-                  style={{
-                    width: "100%",
-                    padding: "0.875rem",
-                    borderRadius: "8px",
-                    background: "#EAB308",
-                    color: "#070B14",
-                    fontFamily: "'Inter', sans-serif",
-                    fontWeight: 600,
-                    fontSize: "0.9rem",
-                    border: "none",
-                    cursor: "pointer",
-                  }}
-                >
-                  Let&apos;s Build
-                </button>
-              </div>
-            </motion.div>
-          </>
+          <motion.div
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -10 }}
+            transition={{ duration: 0.3 }}
+            style={{
+              maxWidth: "1280px",
+              margin: "0.5rem auto",
+              padding: "1.5rem",
+              borderRadius: "16px",
+              background: "rgba(6, 20, 35, 0.9)",
+              backdropFilter: "blur(24px)",
+              border: "1px solid rgba(200, 16, 46, 0.1)",
+              display: "flex",
+              flexDirection: "column",
+              gap: "1rem",
+            }}
+          >
+            {navLinks.map((link) => (
+              <a
+                key={link.href}
+                href={link.href}
+                onClick={() => setMobileOpen(false)}
+                style={{
+                  fontFamily: "'Inter', sans-serif",
+                  fontSize: "1rem",
+                  fontWeight: 500,
+                  color: "var(--on-surface-variant)",
+                  textDecoration: "none",
+                  padding: "0.5rem 0",
+                }}
+              >
+                {link.label}
+              </a>
+            ))}
+          </motion.div>
         )}
       </AnimatePresence>
-    </>
+
+      <style>{`
+        @media (max-width: 768px) {
+          .hidden-mobile { display: none !important; }
+          .mobile-only { display: block !important; }
+        }
+        @media (min-width: 769px) {
+          .mobile-only { display: none !important; }
+        }
+      `}</style>
+    </motion.nav>
   );
 }
