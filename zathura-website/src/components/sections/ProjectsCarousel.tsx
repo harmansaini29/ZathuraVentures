@@ -97,7 +97,7 @@ export default function ProjectsCarousel() {
   const activeProject = projects[activeIndex];
 
   return (
-    <section id="projects" style={{ position: "relative", height: "100vh", minHeight: "800px", overflow: "hidden", background: "#000" }}>
+    <section id="projects" style={{ position: "relative", height: "100vh", minHeight: "800px", overflow: "hidden", background: "transparent" }}>
 
       {/* Background Image (PS5 Style Fullscreen transition) */}
       <AnimatePresence mode="wait">
@@ -123,7 +123,7 @@ export default function ProjectsCarousel() {
         style={{
           position: "absolute",
           inset: 0,
-          background: "linear-gradient(to top, #061423 0%, rgba(6, 20, 35, 0.7) 40%, rgba(6, 20, 35, 0.9) 100%)",
+          background: "linear-gradient(to top, #020a14 0%, rgba(2, 10, 20, 0.7) 40%, rgba(2, 10, 20, 0.9) 100%)",
           zIndex: 1,
         }}
       />

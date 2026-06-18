@@ -210,7 +210,7 @@ export default function Services() {
   const inView = useInView(containerRef, { once: true, margin: "-100px" });
 
   return (
-    <section id="services" style={{ background: "var(--surface)", position: "relative", padding: "8rem 0", perspective: "1000px", overflow: "hidden" }}>
+    <section id="services" style={{ background: "transparent", position: "relative", padding: "8rem 0", perspective: "1000px", overflow: "hidden" }}>
       {/* === Premium CSS Tech Background: No Three.js, Pure Performance === */}
 
       {/* 1. Diagonal scan-line grid */}

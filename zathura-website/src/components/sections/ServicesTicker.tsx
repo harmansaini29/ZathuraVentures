@@ -21,7 +21,7 @@ export default function ServicesTicker() {
   return (
     <section
       style={{
-        background: "var(--surface-container-low)",
+        background: "transparent",
         borderTop: "1px solid var(--outline-variant)",
         borderBottom: "1px solid var(--outline-variant)",
         overflow: "hidden",

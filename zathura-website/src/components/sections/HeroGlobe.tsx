@@ -5,7 +5,7 @@ import { Canvas, useFrame, useThree } from "@react-three/fiber";
 import { Html } from "@react-three/drei";
 import * as THREE from "three";
 
-const RADIUS = 2.5;
+const RADIUS = 5.5;
 const TOTAL_DOTS = 35000;
 
 const globeVertexShader = `
@@ -318,11 +318,11 @@ function SpaceOrbitals() {
       {/* Orbit ring 1 – thin blue equatorial */}
       <group ref={orb1} rotation={[Math.PI / 2, 0, 0]}>
         <mesh>
-          <torusGeometry args={[4.5, 0.012, 8, 128]} />
+          <torusGeometry args={[6.5, 0.012, 8, 128]} />
           <meshBasicMaterial color="#00e5ff" transparent opacity={0.35} toneMapped={false} />
         </mesh>
         {/* Orbiting dot (satellite) */}
-        <mesh position={[4.5, 0, 0]}>
+        <mesh position={[6.5, 0, 0]}>
           <sphereGeometry args={[0.07, 8, 8]} />
           <meshBasicMaterial color="#00e5ff" toneMapped={false} />
         </mesh>
@@ -331,10 +331,10 @@ function SpaceOrbitals() {
       {/* Orbit ring 2 – tilted gold */}
       <group ref={orb2} rotation={[Math.PI / 3, Math.PI / 6, 0]}>
         <mesh>
-          <torusGeometry args={[5.8, 0.01, 8, 128]} />
+          <torusGeometry args={[7.8, 0.01, 8, 128]} />
           <meshBasicMaterial color="#d4af37" transparent opacity={0.25} toneMapped={false} />
         </mesh>
-        <mesh position={[5.8, 0, 0]}>
+        <mesh position={[7.8, 0, 0]}>
           <sphereGeometry args={[0.055, 8, 8]} />
           <meshBasicMaterial color="#d4af37" toneMapped={false} />
         </mesh>
@@ -343,10 +343,10 @@ function SpaceOrbitals() {
       {/* Orbit ring 3 – perpendicular faint */}
       <group ref={orb3} rotation={[0, Math.PI / 4, Math.PI / 2]}>
         <mesh>
-          <torusGeometry args={[6.8, 0.008, 8, 128]} />
+          <torusGeometry args={[8.8, 0.008, 8, 128]} />
           <meshBasicMaterial color="#0088ff" transparent opacity={0.18} toneMapped={false} />
         </mesh>
-        <mesh position={[6.8, 0, 0]}>
+        <mesh position={[8.8, 0, 0]}>
           <sphereGeometry args={[0.045, 8, 8]} />
           <meshBasicMaterial color="#00ccff" toneMapped={false} />
         </mesh>
@@ -370,9 +370,9 @@ function RisingTechRings() {
   
   const ringsData = useMemo(() => {
     return Array.from({ length: RINGS_COUNT }, (_, i) => ({
-      yOffset: -14 + (i * 2.2), // Spread further down so they don't start cut off
-      speed: 0.15 + Math.random() * 0.1,
-      rotationSpeed: (Math.random() > 0.5 ? 1 : -1) * (0.05 + Math.random() * 0.1),
+      yOffset: -16 + (i * 1.8), // Spread further up so they are completely visible
+      speed: 0.015 + Math.random() * 0.015, // Extremely smooth and slow
+      rotationSpeed: (Math.random() > 0.5 ? 1 : -1) * (0.005 + Math.random() * 0.01), // Very slow rotation
       labels: [
         techStacks[Math.floor(Math.random() * techStacks.length)],
         techStacks[Math.floor(Math.random() * techStacks.length)]
@@ -388,14 +388,14 @@ function RisingTechRings() {
         ringGroup.position.y += delta * data.speed;
         ringGroup.rotation.y += delta * data.rotationSpeed;
 
-        // Reset to bottom seamlessly when it reaches main platform
-        if (ringGroup.position.y > -2.8) {
-          ringGroup.position.y = -14;
+        // Reset to bottom seamlessly when it reaches main platform (now the shield at -8.0)
+        if (ringGroup.position.y > -7.8) {
+          ringGroup.position.y = -16;
         }
 
         let alpha = 1.0;
-        if (ringGroup.position.y < -12) alpha = (ringGroup.position.y - -14) / 2.0;
-        else if (ringGroup.position.y > -4) alpha = 1.0 - ((ringGroup.position.y - -4) / 1.2);
+        if (ringGroup.position.y < -14) alpha = (ringGroup.position.y - -16) / 2.0;
+        else if (ringGroup.position.y > -9.0) alpha = Math.max(0, 1.0 - ((ringGroup.position.y - -9.0) / 1.2));
         
         ringGroup.children.forEach((child) => {
           if ((child as THREE.Mesh).isMesh) {
@@ -464,36 +464,83 @@ function RisingTechRings() {
   );
 }
 
-function SciFiPlatform() {
-  const platformRef = useRef<THREE.Group>(null);
-
+/* ─────────────────────────────────────────────────────────────────────────────
+   Asgardian Energy Shield (Concave curve, beautiful glowing 3D geometry)
+───────────────────────────────────────────────────────────────────────────── */
+function AsgardianShield() {
+  const shieldRef = useRef<THREE.Group>(null);
+  
   useFrame((_, delta) => {
-    if (platformRef.current) {
-      platformRef.current.rotation.y -= delta * 0.2;
+    if (shieldRef.current) {
+      shieldRef.current.rotation.y += delta * 0.1;
     }
   });
 
   return (
+    <group position={[0, -8.0, 0]} ref={shieldRef}>
+      {/* Intense Core Concave Plate */}
+      <mesh position={[0, -0.5, 0]}>
+        <cylinderGeometry args={[6.0, 4.0, 1.0, 64]} />
+        <meshStandardMaterial 
+          color="#111" 
+          emissive="#0044aa" 
+          emissiveIntensity={1} 
+          roughness={0.1}
+          metalness={0.8}
+        />
+      </mesh>
+
+      {/* Outer Golden Ring Base on top edge of dish */}
+      <mesh rotation={[-Math.PI / 2, 0, 0]} position={[0, 0, 0]}>
+        <torusGeometry args={[6.0, 0.15, 16, 100]} />
+        <meshStandardMaterial color="#d4af37" emissive="#554400" roughness={0.2} metalness={0.9} />
+      </mesh>
+      
+      {/* Inner Rotating Runes/Rings */}
+      <mesh rotation={[-Math.PI / 2, 0, 0]} position={[0, 0.1, 0]}>
+        <ringGeometry args={[5.0, 5.8, 64]} />
+        <meshStandardMaterial color="#d4af37" emissive="#d4af37" emissiveIntensity={0.5} transparent opacity={0.6} side={THREE.DoubleSide} wireframe />
+      </mesh>
+      
+      <mesh rotation={[-Math.PI / 2, 0, 0]} position={[0, 0.15, 0]}>
+        <ringGeometry args={[4.2, 4.5, 32]} />
+        <meshBasicMaterial color="#00e5ff" transparent opacity={0.8} side={THREE.DoubleSide} toneMapped={false} />
+      </mesh>
+
+      {/* The Core Energy Dome Receptor */}
+      <mesh position={[0, -0.2, 0]}>
+        <sphereGeometry args={[4.5, 64, 32, 0, Math.PI * 2, 0, Math.PI / 2]} />
+        <meshBasicMaterial color="#0088ff" transparent opacity={0.15} blending={THREE.AdditiveBlending} depthWrite={false} side={THREE.DoubleSide} />
+      </mesh>
+
+      {/* Center Impact Receptor */}
+      <mesh position={[0, -0.1, 0]}>
+        <cylinderGeometry args={[1.5, 1.5, 0.1, 32]} />
+        <meshBasicMaterial color="#ffffff" transparent opacity={0.8} blending={THREE.AdditiveBlending} />
+      </mesh>
+      <mesh position={[0, 0.0, 0]}>
+        <cylinderGeometry args={[0.8, 0.8, 0.1, 32]} />
+        <meshBasicMaterial color="#ffaa00" toneMapped={false} />
+      </mesh>
+    </group>
+  );
+}
+
+/* ─────────────────────────────────────────────────────────────────────────────
+   Main Exported Component
+───────────────────────────────────────────────────────────────────────────── */
+export function HeroGlobeScene({ isExploded, handleClick }: { isExploded: boolean, handleClick: () => void }) {
+  return (
     <>
-      <group ref={platformRef} position={[0, -2.8, 0]}>
-        <mesh rotation={[-Math.PI / 2, 0, 0]}>
-          <ringGeometry args={[3.2, 3.25, 64]} />
-          <meshBasicMaterial color="#00e5ff" transparent opacity={0.8} side={THREE.DoubleSide} toneMapped={false} />
-        </mesh>
-        <mesh rotation={[-Math.PI / 2, 0, 0]}>
-          <ringGeometry args={[2.7, 3.0, 64]} />
-          <meshBasicMaterial color="#0088ff" transparent opacity={0.3} side={THREE.DoubleSide} toneMapped={false} />
-        </mesh>
-        <mesh rotation={[-Math.PI / 2, 0, 0]} position={[0, -0.1, 0]}>
-          <torusGeometry args={[2.5, 0.02, 64, 100]} />
-          <meshBasicMaterial color="#00e5ff" transparent opacity={1.0} toneMapped={false} />
-        </mesh>
-        <mesh rotation={[-Math.PI / 2, 0, 0]} position={[0, -0.5, 0]}>
-          <circleGeometry args={[4, 64]} />
-          <meshBasicMaterial color="#0088ff" transparent opacity={0.05} side={THREE.DoubleSide} toneMapped={false} blending={THREE.AdditiveBlending} />
-        </mesh>
+      <ambientLight intensity={0.5} />
+      <SpaceOrbitals />
+      
+      <group position={[0, 0, 0]}>
+        <group rotation={[0.1, -0.2, 0]}>
+          <SciFiGlobe isExploded={isExploded} onClick={handleClick} />
+          <AsgardianShield />
+        </group>
       </group>
-      <RisingTechRings />
     </>
   );
 }
@@ -509,7 +556,6 @@ export default function HeroGlobe() {
 
   return (
     <div style={{ width: "100%", height: "100%" }}>
-      {/* ZV monogram spin keyframes — must live outside the R3F Canvas */}
       <style>{`
         @keyframes zv-spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
         @keyframes zv-spin-rev { from { transform: rotate(0deg); } to { transform: rotate(-360deg); } }
@@ -521,16 +567,7 @@ export default function HeroGlobe() {
         dpr={[1, 2]}
         style={{ width: "100%", height: "100%" }}
       >
-        <ambientLight intensity={0.5} />
-
-        {/* Space themed orbitals and star field */}
-        <SpaceOrbitals />
-
-        {/* Sci-Fi Interface Platform with rising tech rings */}
-        <SciFiPlatform />
-
-        {/* The Dotted Interactive Globe */}
-        <SciFiGlobe isExploded={isExploded} onClick={handleClick} />
+        <HeroGlobeScene isExploded={isExploded} handleClick={handleClick} />
       </Canvas>
     </div>
   );

@@ -3,18 +3,20 @@
 import { useState, useEffect } from "react";
 import dynamic from "next/dynamic";
 import { motion, AnimatePresence } from "framer-motion";
-import HeroGlobeSection from "@/components/sections/HeroGlobeSection";
-import HeroContent from "@/components/sections/HeroContent";
 import ServicesTicker from "@/components/sections/ServicesTicker";
 import Services from "@/components/sections/Services";
 import AboutTeam from "@/components/sections/AboutTeam";
 import ProjectsCarousel from "@/components/sections/ProjectsCarousel";
-import CTA from "@/components/sections/CTA";
+import CombinedCTA from "@/components/sections/CombinedCTA";
 import Footer from "@/components/layout/Footer";
 
-// Dynamically import the WebGL intro to avoid SSR issues
+// Dynamically import heavy WebGL sections — no SSR
 const LightningGlobeIntro = dynamic(
   () => import("@/components/sections/LightningGlobeIntro"),
+  { ssr: false }
+);
+const UnifiedCore = dynamic(
+  () => import("@/components/sections/UnifiedCore"),
   { ssr: false }
 );
 
@@ -57,23 +59,24 @@ export default function Home() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.5, ease: "easeOut" }}
+            className="bg-[#020a14] text-white min-h-screen"
           >
-            {/* 1. Globe — always first, full viewport */}
-            <HeroGlobeSection />
+            {/* 1. Hero Globe — full-viewport, always first */}
+            <UnifiedCore />
 
-            {/* 2. Services ticker + Services grid */}
+            {/* 2. Digital Constellation (Team) */}
+            <AboutTeam />
+
+            {/* Services */}
             <ServicesTicker />
             <Services />
 
-            {/* 3. Digital Masterminds */}
-            <AboutTeam />
-
-            {/* 4. We Build the Future — after Masterminds */}
-            <HeroContent />
-
-            {/* 5. Rest of page */}
+            {/* 4. Our Legacy */}
             <ProjectsCarousel />
-            <CTA />
+
+            {/* 5. The Future Builder (Combined CTA) */}
+            <CombinedCTA />
+
             <Footer />
           </motion.main>
         )}
