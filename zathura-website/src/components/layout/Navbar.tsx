@@ -139,7 +139,8 @@ export default function Navbar() {
             </a>
           ))}
           <a
-            href="mailto:hello@zathuraventures.com"
+            href="/#contact"
+            onClick={(e) => handleNavClick(e, '/#contact')}
             style={{
               fontFamily: "'Inter', sans-serif",
               fontSize: "0.8rem",
