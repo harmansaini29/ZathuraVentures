@@ -10,8 +10,8 @@ export default function Footer() {
 
   return (
     <footer className="w-full bg-transparent border-t border-white/5 relative z-10">
-      <div className="max-w-[1400px] mx-auto px-6 py-8">
-        <div className="flex flex-col md:flex-row items-center justify-between gap-6">
+      <div className="max-w-[1400px] mx-auto px-6 py-16">
+        <div className="flex flex-col lg:flex-row flex-wrap items-center justify-between gap-6 lg:gap-8">
           
           {/* Left: Brand */}
           <div className="flex items-center gap-4">
@@ -25,30 +25,36 @@ export default function Footer() {
           </div>
 
           {/* Center: Navigation */}
-          <nav className="flex items-center gap-8">
-            {["home", "services", "team", "contact"].map((nav) => (
-              <button 
-                key={nav}
-                onClick={() => handleNavClick(`#${nav}`)}
+          <nav className="flex items-center gap-8 lg:gap-12">
+            {[
+              { label: "home", id: "unified-core" },
+              { label: "services", id: "services" },
+              { label: "team", id: "team" },
+              { label: "contact", id: "contact" }
+            ].map((nav) => (
+              <a 
+                key={nav.label}
+                href={`/#${nav.id}`}
                 className="font-mono text-xs text-white/50 hover:text-[#00e5ff] uppercase tracking-widest transition-colors"
               >
-                {nav}
-              </button>
+                {nav.label}
+              </a>
             ))}
           </nav>
 
           {/* Right: Contact & Copyright */}
-          <div className="flex items-center gap-6">
+          <div className="flex flex-wrap items-center justify-center gap-4 md:gap-6">
             <a href="mailto:hello@zathuraventures.com" className="text-white/40 hover:text-[#00e5ff] transition-colors">
               <Mail size={18} />
             </a>
             <a href="tel:+1234567890" className="text-white/40 hover:text-[#00e5ff] transition-colors">
               <Phone size={18} />
             </a>
-            <div className="w-[1px] h-4 bg-white/10" />
-            <span className="font-mono text-[10px] text-white/30 uppercase tracking-widest">
-              © {new Date().getFullYear()} Zathura. All rights reserved.
-            </span>
+            <div className="hidden md:block w-[1px] h-4 bg-white/10" />
+            <div className="flex flex-wrap justify-center items-center gap-3 font-mono text-[10px] text-white/30 uppercase tracking-widest text-center">
+              <span>© {new Date().getFullYear()} Zathura. All rights reserved.</span>
+              <a href="/privacy-policy" className="hover:text-[#00e5ff] transition-colors">Privacy Policy</a>
+            </div>
           </div>
 
         </div>

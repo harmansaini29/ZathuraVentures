@@ -418,7 +418,7 @@ def build_employee_report(employee_row: pd.Series, metrics: dict[str, object], m
     doc = SimpleDocTemplate(str(report_path), pagesize=A4)
     elements = []
 
-    elements.append(Paragraph("Zentara Ventures", styles["Title"]))
+    elements.append(Paragraph("Zathura Ventures", styles["Title"]))
     elements.append(Paragraph(f"Monthly Attendance Report - {month_key}", styles["Heading2"]))
     elements.append(Spacer(1, 12))
 
@@ -525,7 +525,7 @@ def command_report(args: argparse.Namespace) -> None:
 
 
 def build_parser() -> argparse.ArgumentParser:
-    parser = argparse.ArgumentParser(description="Zentara Ventures attendance system")
+    parser = argparse.ArgumentParser(description="Zathura Ventures attendance system")
     subparsers = parser.add_subparsers(dest="command", required=True)
 
     init_parser = subparsers.add_parser("init", help="Create or reset attendance workbook")

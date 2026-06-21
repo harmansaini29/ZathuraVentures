@@ -4,16 +4,32 @@ import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
 const navLinks = [
-  { label: "Home", href: "#home" },
-  { label: "Services", href: "#services" },
-  { label: "About", href: "#about-team" },
-  { label: "Portfolio", href: "#portfolio" },
-  { label: "Contact", href: "#contact" },
+  { label: "Home", href: "/#unified-core" },
+  { label: "Services", href: "/#services" },
+  { label: "About", href: "/#team" },
+  { label: "Portfolio", href: "/#projects" },
+  { label: "Contact", href: "/#contact" },
 ];
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
+
+  const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+    setMobileOpen(false);
+    
+    // If we are already on the home page, smoothly scroll to the section
+    if (href.startsWith('/#') && window.location.pathname === '/') {
+      const targetId = href.replace('/#', '');
+      const elem = document.getElementById(targetId);
+      if (elem) {
+        e.preventDefault();
+        elem.scrollIntoView({ behavior: 'smooth' });
+        // Update URL hash without jumping
+        window.history.pushState(null, '', href);
+      }
+    }
+  };
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 50);
@@ -37,9 +53,9 @@ export default function Navbar() {
     >
       <div
         style={{
-          maxWidth: "1280px",
-          margin: "0.75rem auto",
-          padding: "0.875rem 1.75rem",
+          maxWidth: "1400px",
+          margin: "1rem auto",
+          padding: "1.25rem 2.5rem",
           borderRadius: "16px",
           background: scrolled
             ? "rgba(6, 20, 35, 0.75)"
@@ -57,7 +73,7 @@ export default function Navbar() {
         }}
       >
         {/* Logo */}
-        <a href="#home" style={{ textDecoration: "none", display: "flex", alignItems: "center", gap: "0.75rem" }}>
+        <a href="/#unified-core" onClick={(e) => handleNavClick(e, '/#unified-core')} style={{ textDecoration: "none", display: "flex", alignItems: "center", gap: "1rem" }}>
           <div
             style={{
               width: "36px",
@@ -93,7 +109,7 @@ export default function Navbar() {
           style={{
             display: "flex",
             alignItems: "center",
-            gap: "2rem",
+            gap: "3.5rem",
           }}
           className="hidden-mobile"
         >
@@ -101,6 +117,7 @@ export default function Navbar() {
             <a
               key={link.href}
               href={link.href}
+              onClick={(e) => handleNavClick(e, link.href)}
               style={{
                 fontFamily: "'Inter', sans-serif",
                 fontSize: "0.85rem",
@@ -197,7 +214,7 @@ export default function Navbar() {
               <a
                 key={link.href}
                 href={link.href}
-                onClick={() => setMobileOpen(false)}
+                onClick={(e) => handleNavClick(e, link.href)}
                 style={{
                   fontFamily: "'Inter', sans-serif",
                   fontSize: "1rem",

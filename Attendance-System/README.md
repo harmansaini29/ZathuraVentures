@@ -1,6 +1,6 @@
-# Zentara Ventures Attendance System
+# Zathura Ventures Attendance System
 
-This folder now contains a simple company attendance CLI for Zentara Ventures.
+This folder now contains a simple company attendance CLI for Zathura Ventures.
 
 ## What it does
 
