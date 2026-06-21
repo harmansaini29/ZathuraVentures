@@ -53,34 +53,35 @@ export default function Home() {
         <LightningGlobeIntro onComplete={handleIntroComplete} />
       )}
 
-      <AnimatePresence>
-        {showContent && (
-          <motion.main
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.5, ease: "easeOut" }}
-            className="bg-[#020a14] text-white min-h-screen"
-          >
-            {/* 1. Hero Globe — full-viewport, always first */}
-            <UnifiedCore />
+      <motion.main
+        initial={{ opacity: 0 }}
+        animate={{ opacity: showContent ? 1 : 0 }}
+        transition={{ duration: 0.5, ease: "easeOut" }}
+        className="bg-[#020a14] text-white min-h-screen"
+        style={{ 
+          pointerEvents: showContent ? "auto" : "none",
+          height: showContent ? "auto" : "100vh",
+          overflow: showContent ? "visible" : "hidden"
+        }}
+      >
+        {/* 1. Hero Globe — full-viewport, always first */}
+        <UnifiedCore />
 
-            {/* 2. Digital Constellation (Team) */}
-            <AboutTeam />
+        {/* 2. Digital Constellation (Team) */}
+        <AboutTeam />
 
-            {/* Services */}
-            <ServicesTicker />
-            <Services />
+        {/* Services */}
+        <ServicesTicker />
+        <Services />
 
-            {/* 4. Our Legacy */}
-            <ProjectsCarousel />
+        {/* 4. Our Legacy */}
+        <ProjectsCarousel />
 
-            {/* 5. The Future Builder (Combined CTA) */}
-            <CombinedCTA />
+        {/* 5. The Future Builder (Combined CTA) */}
+        <CombinedCTA />
 
-            <Footer />
-          </motion.main>
-        )}
-      </AnimatePresence>
+        <Footer />
+      </motion.main>
     </>
   );
 }

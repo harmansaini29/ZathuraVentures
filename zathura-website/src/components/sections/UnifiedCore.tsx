@@ -223,9 +223,9 @@ export default function UnifiedCore() {
           position: "absolute", bottom: "12vh", left: 0, width: "100%", zIndex: 10, textAlign: "center", pointerEvents: "none" 
         }}
       >
-        <h2 style={{ fontSize: "clamp(1.5rem, 3vw, 2.5rem)", fontWeight: 300, color: "#fff", margin: "0 0 0.5rem", letterSpacing: "0.2em", fontFamily: "'Inter', sans-serif" }}>
+        <h1 style={{ fontSize: "clamp(1.5rem, 3vw, 2.5rem)", fontWeight: 300, color: "#fff", margin: "0 0 0.5rem", letterSpacing: "0.2em", fontFamily: "'Inter', sans-serif" }}>
           THE <span style={{ fontWeight: 800, color: "#00e5ff", textShadow: "0 0 20px rgba(0,229,255,0.4)" }}>QUANTUM</span> CORE
-        </h2>
+        </h1>
         <div style={{ width: "40px", height: "2px", background: "#00e5ff", margin: "1rem auto", boxShadow: "0 0 10px #00e5ff" }} />
         <p style={{ color: "rgba(255,255,255,0.4)", fontSize: "0.85rem", textTransform: "uppercase", letterSpacing: "0.15em", margin: 0, fontFamily: "'Inter', sans-serif" }}>
           Autonomous Infrastructure
