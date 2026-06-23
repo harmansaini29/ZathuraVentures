@@ -44,14 +44,19 @@ function QuantumMonolith() {
         />
       </mesh>
 
-      {/* Inner Glowing Core - Hexagonal */}
+
+      {/* Inner Glowing Core - replaced dark wireframe with transparent additive glow */}
       <mesh>
         <cylinderGeometry args={[2.5, 2.5, 15.8, 6]} />
         <meshStandardMaterial 
-          color="#001133" 
+          color="#0066ff" 
           emissive="#0044bb" 
-          emissiveIntensity={0.8}
-          wireframe
+          emissiveIntensity={1.5}
+          transparent
+          opacity={0.08}
+          side={THREE.DoubleSide}
+          blending={THREE.AdditiveBlending}
+          depthWrite={false}
         />
       </mesh>
 
@@ -354,7 +359,7 @@ export function FoundryScene() {
       <FoundryTechRings />
 
       <EffectComposer>
-        <Bloom intensity={1.5} luminanceThreshold={0.1} luminanceSmoothing={0.9} mipmapBlur />
+        <Bloom intensity={1.5} luminanceThreshold={0.1} luminanceSmoothing={0.9} />
       </EffectComposer>
     </>
   );

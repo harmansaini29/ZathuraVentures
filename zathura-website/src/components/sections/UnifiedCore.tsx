@@ -243,7 +243,7 @@ export default function UnifiedCore() {
 
         <Canvas
           gl={{ antialias: false, powerPreference: "high-performance" }}
-          dpr={[1, 1.5]}
+          dpr={[1, 1.2]}
           style={{ width: "100%", height: "100%", display: "block" }}
         >
           {/* Base Setup */}

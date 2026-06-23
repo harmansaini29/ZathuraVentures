@@ -87,26 +87,29 @@ export default function Footer() {
             </div>
           </div>
 
-          {/* Column 4: Newsletter */}
+          {/* Column 4: Follow Us */}
           <div className="flex flex-col gap-6">
-            <h3 className="font-sans text-lg text-white font-semibold">Stay Updated</h3>
+            <h3 className="font-sans text-lg text-white font-semibold">Follow Us</h3>
             <p className="text-sm text-white/60 leading-relaxed">
-              Subscribe to our secure channel for the latest architectural updates and insights.
+              Stay connected with the team. We share updates, insights, and behind-the-scenes content.
             </p>
-            <form className="flex flex-col gap-4 mt-2" onSubmit={(e) => e.preventDefault()}>
-              <input 
-                type="email" 
-                placeholder="Enter your comms address" 
-                className="w-full bg-transparent border border-white/20 rounded-lg px-4 py-3 text-sm text-white placeholder:text-white/40 focus:outline-none focus:border-[#00e5ff]/50 transition-colors"
-                required
-              />
-              <button 
-                type="submit"
-                className="w-full bg-gradient-to-r from-[#00e5ff] to-[#0088ff] text-black font-semibold text-sm rounded-lg px-4 py-3 hover:opacity-90 hover:shadow-[0_0_20px_rgba(0,229,255,0.3)] transition-all uppercase tracking-widest font-mono"
-              >
-                Subscribe
-              </button>
-            </form>
+            <div className="flex flex-col gap-3 mt-2">
+              {[
+                { label: "LinkedIn", href: "#", icon: "in" },
+                { label: "Twitter / X", href: "#", icon: "tw" },
+                { label: "Instagram", href: "#", icon: "ig" },
+                { label: "YouTube", href: "#", icon: "yt" },
+              ].map((s) => (
+                <a
+                  key={s.label}
+                  href={s.href}
+                  className="flex items-center gap-3 text-sm text-white/60 hover:text-[#00e5ff] transition-colors group"
+                >
+                  <span className="w-7 h-7 rounded-full bg-white/5 border border-white/10 flex items-center justify-center font-mono text-[10px] font-bold uppercase group-hover:border-[#00e5ff]/30 group-hover:bg-[#00e5ff]/10 transition-all">{s.icon}</span>
+                  {s.label}
+                </a>
+              ))}
+            </div>
           </div>
 
         </div>
@@ -143,7 +146,7 @@ export default function Footer() {
         {/* Copyright */}
         <div className="mt-8 text-center">
           <span className="text-[10px] font-mono text-white/30 uppercase tracking-widest">
-            © {new Date().getFullYear()} Zathura Ventures. All rights reserved.
+            © 2025 Zathura Ventures. All rights reserved.
           </span>
         </div>
 

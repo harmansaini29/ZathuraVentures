@@ -6,7 +6,7 @@ import { Html } from "@react-three/drei";
 import * as THREE from "three";
 
 const RADIUS = 5.5;
-const TOTAL_DOTS = 35000;
+const TOTAL_DOTS = 18000;
 
 const globeVertexShader = `
   attribute vec3 color; // React Three Fiber maps 'colors' buffer to 'color' attribute
@@ -536,7 +536,7 @@ export function HeroGlobeScene({ isExploded, handleClick }: { isExploded: boolea
       <SpaceOrbitals />
       
       <group position={[0, 0, 0]}>
-        <group rotation={[0.1, -0.2, 0]}>
+        <group>
           <SciFiGlobe isExploded={isExploded} onClick={handleClick} />
           <AsgardianShield />
         </group>
