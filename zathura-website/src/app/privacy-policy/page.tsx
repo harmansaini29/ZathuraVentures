@@ -34,7 +34,7 @@ export default function PrivacyPolicy() {
           <section>
             <h2 className="text-2xl font-bold mb-4 text-[#a5e7ff]">4. Contact Us</h2>
             <p>
-              If you have any questions about this Privacy Policy, please contact us at hello@zathuraventures.com.
+              If you have any questions about this Privacy Policy, please contact us at zathuraventures@gmail.com.
             </p>
           </section>
         </div>

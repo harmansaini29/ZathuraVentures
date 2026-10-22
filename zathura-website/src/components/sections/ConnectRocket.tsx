@@ -397,8 +397,8 @@ export default function ConnectRocket() {
 
                 <div className="flex items-center gap-3 p-4 rounded-xl bg-white/5 border border-white/10">
                   <Mail size={20} className="text-cyan-400 shrink-0" />
-                  <a href="mailto:hello@zathuraventures.com" className="hover:text-cyan-300 transition-colors font-medium">
-                    hello@zathuraventures.com
+                  <a href="mailto:zathuraventures@gmail.com" className="hover:text-cyan-300 transition-colors font-medium">
+                    zathuraventures@gmail.com
                   </a>
                 </div>
               </div>

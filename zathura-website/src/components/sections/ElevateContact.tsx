@@ -166,8 +166,8 @@ export default function ElevateContact() {
                 </div>
                 <div className="flex items-center gap-3 p-3.5 rounded-xl bg-white/[0.02] border border-white/5">
                   <Mail size={15} className="text-[#d4af37]" />
-                  <a href="mailto:hello@zathuraventures.com" className="hover:text-white transition-colors">
-                    hello@zathuraventures.com
+                  <a href="mailto:zathuraventures@gmail.com" className="hover:text-white transition-colors">
+                    zathuraventures@gmail.com
                   </a>
                 </div>
               </div>

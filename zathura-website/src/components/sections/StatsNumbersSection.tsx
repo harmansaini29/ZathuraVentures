@@ -6,33 +6,32 @@ import StatsCounter from "@/components/ui/StatsCounter";
 
 const STATS_DATA = [
   {
-    value: 120,
-    prefix: "$",
-    suffix: "M+",
-    decimals: 0,
-    label: "Capital Processed",
-    detail: "Institutional Volume",
-  },
-  {
-    value: 45,
+    value: 1200,
     suffix: "+",
     decimals: 0,
-    label: "Enterprise Deployments",
-    detail: "Production Stacks",
+    label: "Developer Community",
+    detail: "GrowSphere Mumbai",
   },
   {
-    value: 99.98,
-    decimals: 2,
+    value: 60,
     suffix: "%",
-    label: "Core Availability",
-    detail: "Zero-Loss SLA",
+    decimals: 0,
+    label: "Workflow Reduction",
+    detail: "Connex Platform SLA",
   },
   {
     value: 100,
     suffix: "%",
     decimals: 0,
-    label: "Audited Security",
-    detail: "Cryptographic Verified",
+    label: "Milestone Reliability",
+    detail: "Zero-Loss Delivery",
+  },
+  {
+    value: 93,
+    suffix: "%",
+    decimals: 0,
+    label: "Elite+Gold Distinction",
+    detail: "NPTEL Certified (Java)",
   },
 ];
 
@@ -79,7 +78,6 @@ export default function StatsNumbersSection() {
               <div className="font-sans font-black text-5xl sm:text-6xl text-white tracking-tight mb-3 flex items-center justify-center">
                 <StatsCounter
                   value={stat.value}
-                  prefix={stat.prefix}
                   suffix={stat.suffix}
                   decimals={stat.decimals}
                   duration={2.2}

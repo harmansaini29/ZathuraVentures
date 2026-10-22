@@ -144,7 +144,7 @@ export default function FounderGLBSection() {
             {/* Tag Pill */}
             <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#00e5ff]/10 border border-[#00e5ff]/30 text-[#00e5ff] font-mono text-[10px] uppercase tracking-[0.25em] font-semibold w-fit shadow-[0_0_15px_rgba(0,229,255,0.15)]">
               <span className="w-2 h-2 rounded-full bg-[#00e5ff] shadow-[0_0_8px_#00e5ff] animate-pulse" />
-              <span>Founder & Systems Architect</span>
+              <span>Software & Gen AI Engineer</span>
             </div>
 
             {/* Name */}
@@ -153,35 +153,47 @@ export default function FounderGLBSection() {
                 Harman <span className="font-bold text-transparent bg-clip-text bg-gradient-to-r from-white via-[#a5f3fc] to-[#00e5ff]">Saini</span>
               </h2>
               <p className="font-mono text-xs uppercase tracking-[0.25em] text-[#00e5ff] font-semibold mt-2.5">
-                Principal Systems Architect · Zathura Ventures
+                AI Full-Stack Engineer · Founder @ GrowSphere
               </p>
             </div>
 
-            {/* Concise Bio (Pure Typography, No Card Box) */}
+            {/* Authentic Resume Bio */}
             <p className="text-[#8eaec9] text-sm sm:text-base font-light leading-relaxed">
-              Operating at the bleeding edge of high-grade spatial computing, GPU WebGL 3D, and autonomous AI architectures. Transforming institutional complexity into seamless, ultra-high-performance production software.
+              Software Engineer and Gen AI Engineer building scalable full-stack apps, websites, and self-healing, self-learning AI systems with Java, Python, TypeScript & cloud.
             </p>
 
             <p className="text-[#8eaec9]/80 text-xs sm:text-sm font-light leading-relaxed">
-              Leading venture engineering with absolute technical discipline, zero-loss SLA resilience, and sensory digital craftsmanship.
+              Founder of <strong className="text-white font-medium">GrowSphere</strong> (1,200+ member developer community across Mumbai), leading technical workshops & ecosystem collaborations with NEAR AI, Devcon, and Apache Kafka. AWS on Campus Leader & Google Student Ambassador.
             </p>
 
             {/* Action Buttons */}
-            <div className="flex flex-wrap items-center gap-4 pt-2">
+            <div className="flex flex-wrap items-center gap-3 pt-2">
               <a
                 href="#projects"
-                className="inline-flex items-center gap-2 px-6 py-2.5 rounded-full bg-[#00e5ff] text-[#001221] font-sans text-xs font-bold uppercase tracking-wider hover:bg-white transition-all shadow-[0_0_25px_rgba(0,229,255,0.4)] cursor-pointer group"
+                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-[#00e5ff] text-[#001221] font-sans text-xs font-bold uppercase tracking-wider hover:bg-white transition-all shadow-[0_0_20px_rgba(0,229,255,0.4)] cursor-pointer group"
               >
                 <span>Selected Works</span>
                 <ArrowRight size={13} className="group-hover:translate-x-1 transition-transform" />
               </a>
 
               <a
-                href="#contact"
-                className="inline-flex items-center gap-2 px-6 py-2.5 rounded-full bg-white/[0.04] text-white border border-[#00e5ff]/35 font-sans text-xs font-medium uppercase tracking-wider hover:border-[#00e5ff] hover:bg-[#00e5ff]/10 transition-all cursor-pointer"
+                href="https://www.linkedin.com/in/harman-saini-d29"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 px-4 py-2.5 rounded-full bg-white/[0.04] text-white border border-white/15 font-sans text-xs font-medium uppercase tracking-wider hover:border-[#00e5ff] hover:text-[#00e5ff] transition-all cursor-pointer"
               >
-                <span>Direct Uplink</span>
-                <ExternalLink size={12} className="text-[#00e5ff]" />
+                <span>LinkedIn</span>
+                <ExternalLink size={12} />
+              </a>
+
+              <a
+                href="https://github.com/harmansaini29"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 px-4 py-2.5 rounded-full bg-white/[0.04] text-white border border-white/15 font-sans text-xs font-medium uppercase tracking-wider hover:border-[#00e5ff] hover:text-[#00e5ff] transition-all cursor-pointer"
+              >
+                <span>GitHub</span>
+                <ExternalLink size={12} />
               </a>
             </div>
           </motion.div>

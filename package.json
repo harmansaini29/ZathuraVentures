@@ -1,0 +1,9 @@
+{
+  "name": "zathura-ventures",
+  "private": true,
+  "scripts": {
+    "dev": "npm --prefix zathura-website run dev",
+    "build": "npm --prefix zathura-website run build",
+    "start": "npm --prefix zathura-website run start"
+  }
+}

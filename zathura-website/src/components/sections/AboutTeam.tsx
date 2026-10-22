@@ -13,7 +13,7 @@ const TEAM = [
     skills: ["Strategic Leadership", "Product Vision", "Enterprise Architecture", "Venture Building", "Team Culture"],
     quote: "Build with intent. Architect for infinity.",
     stats: { projects: "40+", years: "8+", clients: "25+" },
-    social: { email: "harman@zathuraventures.com", linkedin: "#", github: "#" },
+    social: { email: "zathuraventures@gmail.com", linkedin: "https://www.linkedin.com/in/harman-saini-d29", github: "https://github.com/harmansaini29" },
     accent: "#d4af37",
   },
   {

@@ -104,7 +104,7 @@ export default function CTA() {
             >
               <a
                 id="cta-start-journey"
-                href="mailto:hello@zathuraventures.com"
+                href="mailto:zathuraventures@gmail.com"
                 style={{
                   display: "inline-flex",
                   alignItems: "center",
@@ -133,7 +133,7 @@ export default function CTA() {
               </a>
 
               <a
-                href="mailto:hello@zathuraventures.com"
+                href="mailto:zathuraventures@gmail.com"
                 style={{
                   display: "inline-flex",
                   alignItems: "center",
