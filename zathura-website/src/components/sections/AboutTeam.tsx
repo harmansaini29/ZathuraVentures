@@ -144,7 +144,7 @@ function Dossier({ member, onClose }: { member: Member; onClose: () => void }) {
               >{member.initials}</div>
             </div>
             <div className="flex-1 p-8 md:p-10 relative">
-              <button onClick={onClose} className="absolute top-6 right-6 w-10 h-10 rounded-full bg-white/[0.04] border border-white/10 flex items-center justify-center text-white/40 hover:text-white hover:bg-white/[0.08] transition-all">
+              <button suppressHydrationWarning onClick={onClose} className="absolute top-6 right-6 w-10 h-10 rounded-full bg-white/[0.04] border border-white/10 flex items-center justify-center text-white/40 hover:text-white hover:bg-white/[0.08] transition-all">
                 <X size={16} />
               </button>
               <div className="flex items-center gap-2 mb-4">
@@ -310,6 +310,7 @@ function MemberPanel({ member, index, activeIndex, onSelect, onDossier }: {
 
         {/* CTA */}
         <motion.button
+          suppressHydrationWarning
           initial={false}
           animate={{ y: isActive ? 0 : 10, opacity: isActive ? 1 : 0 }}
           transition={{ duration: 0.5, delay: 0.45 }}
@@ -358,7 +359,7 @@ export default function AboutTeam() {
   }, [dossier, activeIndex]);
 
   return (
-    <section id="team" className="relative w-full bg-transparent py-24 md:py-32 overflow-hidden">
+    <section id="team" className="relative w-full bg-[#020a14] py-24 md:py-32 overflow-hidden">
       {/* Scanline overlay */}
       <div className="absolute inset-0 pointer-events-none z-[1] opacity-[0.025]" style={{ backgroundImage: "repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(255,255,255,0.03) 2px, rgba(255,255,255,0.03) 4px)" }} />
 
@@ -392,12 +393,12 @@ export default function AboutTeam() {
             <span className="font-mono text-[10px] text-white/20 tracking-widest uppercase mr-3">
               {String(activeIndex + 1).padStart(2, "0")} / {String(TEAM.length).padStart(2, "0")}
             </span>
-            <button onClick={() => setActiveIndex((i) => Math.max(i - 1, 0))} disabled={activeIndex === 0}
-              className="w-11 h-11 rounded-full border border-white/10 flex items-center justify-center text-white/40 hover:text-white hover:border-white/25 transition-all disabled:opacity-20 disabled:cursor-not-allowed">
+            <button suppressHydrationWarning onClick={() => setActiveIndex((i) => Math.max(i - 1, 0))} disabled={activeIndex === 0}
+              className="w-11 h-11 rounded-full border border-white/10 flex items-center justify-center text-white/40 hover:text-white hover:border-white/25 transition-all disabled:opacity-20 disabled:cursor-not-allowed cursor-pointer">
               <ChevronLeft size={18} />
             </button>
-            <button onClick={() => setActiveIndex((i) => Math.min(i + 1, TEAM.length - 1))} disabled={activeIndex === TEAM.length - 1}
-              className="w-11 h-11 rounded-full border border-white/10 flex items-center justify-center text-white/40 hover:text-white hover:border-white/25 transition-all disabled:opacity-20 disabled:cursor-not-allowed">
+            <button suppressHydrationWarning onClick={() => setActiveIndex((i) => Math.min(i + 1, TEAM.length - 1))} disabled={activeIndex === TEAM.length - 1}
+              className="w-11 h-11 rounded-full border border-white/10 flex items-center justify-center text-white/40 hover:text-white hover:border-white/25 transition-all disabled:opacity-20 disabled:cursor-not-allowed cursor-pointer">
               <ChevronRight size={18} />
             </button>
           </div>

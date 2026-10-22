@@ -68,6 +68,7 @@ export default function Ventures() {
           {/* Nav arrows */}
           <div style={{ display: "flex", gap: "0.75rem" }}>
             <button
+              suppressHydrationWarning
               id="ventures-prev"
               onClick={prev}
               aria-label="Previous venture"
@@ -96,6 +97,7 @@ export default function Ventures() {
               <ChevronLeft size={18} />
             </button>
             <button
+              suppressHydrationWarning
               id="ventures-next"
               onClick={next}
               aria-label="Next venture"
@@ -332,6 +334,7 @@ export default function Ventures() {
         >
           {ventures.map((_, i) => (
             <button
+              suppressHydrationWarning
               key={i}
               onClick={() => {
                 setActiveIndex(i);

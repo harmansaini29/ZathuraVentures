@@ -104,7 +104,7 @@ function SciFiGlobe({ isExploded, onClick }: { isExploded: boolean; onClick: () 
 
   const currentPositions = useMemo(() => new Float32Array(originalPositions), [originalPositions]);
 
-  const specularMap = useMemo(() => new THREE.TextureLoader().load("https://raw.githubusercontent.com/mrdoob/three.js/master/examples/textures/planets/earth_specular_2048.jpg"), []);
+  const specularMap = useMemo(() => new THREE.TextureLoader().load("/images/earth_specular_2048.jpg"), []);
   const materialRef = useRef<THREE.ShaderMaterial>(null);
 
   useFrame((state, delta) => {
@@ -142,17 +142,17 @@ function SciFiGlobe({ isExploded, onClick }: { isExploded: boolean; onClick: () 
 
   return (
     <group>
+      {/* Interactive Raycast Hit Proxy (Transparent, not visible=false, so Three.js Raycaster detects clicks) */}
       <mesh
         onClick={onClick}
         onPointerOver={() => setHovered(true)}
         onPointerOut={() => setHovered(false)}
-        visible={false}
       >
-        <sphereGeometry args={[RADIUS, 32, 32]} />
-        <meshBasicMaterial />
+        <sphereGeometry args={[RADIUS * 1.08, 32, 32]} />
+        <meshBasicMaterial transparent opacity={0} depthWrite={false} />
       </mesh>
 
-      <points ref={pointsRef}>
+      <points ref={pointsRef} onClick={onClick}>
         <bufferGeometry>
           <bufferAttribute attach="attributes-position" args={[currentPositions, 3]} />
           <bufferAttribute attach="attributes-color" args={[colors, 3]} />
@@ -172,101 +172,151 @@ function SciFiGlobe({ isExploded, onClick }: { isExploded: boolean; onClick: () 
         />
       </points>
 
-      {/* ── Holographic Zathura Ventures Brand Reveal (on click) ── */}
-      <Html center style={{ pointerEvents: "none", opacity: isExploded ? 1 : 0, transition: "opacity 1s ease", zIndex: 50 }}>
-        <div style={{
-          transform: isExploded ? "scale(1) translateY(0)" : "scale(0.85) translateY(10px)",
-          transition: "transform 1s cubic-bezier(0.16,1,0.3,1)",
-          display: "flex",
-          flexDirection: "column",
-          justifyContent: "center",
-          alignItems: "center",
-          gap: "1.2rem",
-          userSelect: "none",
-        }}>
-          {/* ZV Creative Monogram */}
-          <div style={{
-            position: "relative",
-            width: "110px",
-            height: "110px",
+      {/* ── Holographic Zathura Ventures Brand Reveal (Circular Emblem Inside Globe) ── */}
+      <Html center position={[0, 0, 0]} style={{ pointerEvents: "none", zIndex: 50 }}>
+        <div
+          suppressHydrationWarning
+          style={{
+            opacity: isExploded ? 1 : 0.18,
+            transform: isExploded ? "scale(1.06) translateY(0)" : "scale(0.55) translateY(0)",
+            transition: "all 0.7s cubic-bezier(0.16, 1, 0.3, 1)",
             display: "flex",
-            alignItems: "center",
+            flexDirection: "column",
             justifyContent: "center",
-          }}>
-            {/* Outer rotating ring */}
-            <div style={{
-              position: "absolute",
-              inset: 0,
-              borderRadius: "50%",
-              border: "1.5px solid rgba(0, 229, 255, 0.6)",
-              boxShadow: "0 0 20px rgba(0,229,255,0.4), inset 0 0 20px rgba(0,136,255,0.1)",
-              animation: "zv-spin 8s linear infinite",
-            }} />
-            {/* Inner gold ring */}
-            <div style={{
-              position: "absolute",
-              inset: "10px",
-              borderRadius: "50%",
-              border: "1px solid rgba(212, 175, 55, 0.4)",
-              animation: "zv-spin-rev 12s linear infinite",
-            }} />
-            {/* ZV Letters */}
-            <div style={{ position: "relative", display: "flex", alignItems: "baseline", gap: "2px" }}>
-              <span style={{
-                fontFamily: "'Inter', sans-serif",
-                fontSize: "3.2rem",
-                fontWeight: 900,
-                color: "#00e5ff",
-                textShadow: "0 0 25px #00e5ff, 0 0 50px #0088ff",
-                letterSpacing: "-0.05em",
-                lineHeight: 1,
-              }}>Z</span>
-              <span style={{
-                fontFamily: "'Inter', sans-serif",
-                fontSize: "2rem",
-                fontWeight: 700,
-                color: "rgba(212,175,55,0.95)",
-                textShadow: "0 0 15px rgba(212,175,55,0.8)",
-                lineHeight: 1,
-                marginBottom: "2px",
-              }}>V</span>
+            alignItems: "center",
+            gap: "0.6rem",
+            userSelect: "none",
+          }}
+        >
+          {/* Refined Sized Circular Logo Holographic Medallion Container */}
+          <div
+            suppressHydrationWarning
+            style={{
+              position: "relative",
+              width: "124px",
+              height: "124px",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+            }}
+          >
+            {/* Outer rotating cyber ring */}
+            <div
+              style={{
+                position: "absolute",
+                inset: "-10px",
+                borderRadius: "50%",
+                border: "1.5px dashed rgba(0, 229, 255, 0.8)",
+                boxShadow: isExploded ? "0 0 30px rgba(0, 229, 255, 0.5), inset 0 0 20px rgba(0, 136, 255, 0.3)" : "none",
+                opacity: isExploded ? 1 : 0.25,
+                transition: "opacity 0.6s ease, box-shadow 0.6s ease",
+                animation: "zv-spin 12s linear infinite",
+              }}
+            />
+            {/* Inner counter-rotating azure ring */}
+            <div
+              style={{
+                position: "absolute",
+                inset: "-3px",
+                borderRadius: "50%",
+                border: "1px solid rgba(0, 119, 255, 0.8)",
+                boxShadow: isExploded ? "0 0 20px rgba(0, 119, 255, 0.6)" : "none",
+                opacity: isExploded ? 1 : 0.3,
+                transition: "opacity 0.6s ease",
+                animation: "zv-spin-rev 9s linear infinite",
+              }}
+            />
+            {/* Pulsing Intense Radial Cyan Backlight */}
+            <div
+              style={{
+                position: "absolute",
+                inset: "2px",
+                borderRadius: "50%",
+                background: "radial-gradient(circle, rgba(0, 229, 255, 0.55) 0%, rgba(0, 119, 255, 0.25) 50%, transparent 72%)",
+                filter: "blur(14px)",
+                opacity: isExploded ? 1 : 0.2,
+                transition: "opacity 0.6s ease",
+                pointerEvents: "none",
+              }}
+            />
+            {/* The Compact Pristine Circular Logo in High Definition */}
+            <div
+              style={{
+                position: "relative",
+                width: "106px",
+                height: "106px",
+                borderRadius: "50%",
+                overflow: "hidden",
+                background: "radial-gradient(circle, rgba(2, 8, 22, 0.98) 0%, rgba(0, 14, 34, 0.95) 100%)",
+                backdropFilter: "blur(20px)",
+                border: "1.5px solid rgba(0, 229, 255, 0.8)",
+                boxShadow: isExploded ? "0 0 35px rgba(0, 229, 255, 0.7), inset 0 0 20px rgba(0, 119, 255, 0.5)" : "0 0 15px rgba(0, 229, 255, 0.2)",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                padding: "2px",
+                transition: "box-shadow 0.6s ease",
+              }}
+            >
+              <img
+                src="/images/zathura-logo-circle.png"
+                alt="Zathura Ventures Circular Logo"
+                style={{
+                  width: "100%",
+                  height: "100%",
+                  borderRadius: "50%",
+                  objectFit: "cover",
+                  filter: isExploded ? "drop-shadow(0 0 16px rgba(0, 229, 255, 0.95))" : "drop-shadow(0 0 6px rgba(0, 229, 255, 0.4))",
+                  display: "block",
+                  transition: "filter 0.6s ease",
+                }}
+              />
             </div>
           </div>
 
-          {/* Full Wordmark */}
-          <div style={{
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
-            gap: "0.3rem",
-          }}>
-            <div style={{
-              fontFamily: "'Inter', sans-serif",
-              fontSize: "2rem",
-              fontWeight: 800,
-              letterSpacing: "0.12em",
-              color: "#ffffff",
-              textShadow: "0 0 20px rgba(0,229,255,0.6), 0 0 40px rgba(0,136,255,0.3)",
-              lineHeight: 1,
-            }}>ZATHURA</div>
-            <div style={{
-              fontFamily: "'Inter', sans-serif",
-              fontSize: "0.85rem",
-              fontWeight: 500,
-              letterSpacing: "0.45em",
-              color: "rgba(212,175,55,0.9)",
-              textShadow: "0 0 10px rgba(212,175,55,0.5)",
-              textTransform: "uppercase",
-            }}>VENTURES</div>
+          {/* Holographic Status Badge (Arises upon particle explosion) */}
+          <div
+            suppressHydrationWarning
+            style={{
+              opacity: isExploded ? 1 : 0,
+              transform: isExploded ? "translateY(0)" : "translateY(10px)",
+              pointerEvents: isExploded ? "auto" : "none",
+              transition: "opacity 0.5s ease 0.1s, transform 0.5s ease 0.1s",
+              display: "inline-flex",
+              alignItems: "center",
+              gap: "0.45rem",
+              padding: "0.25rem 0.85rem",
+              borderRadius: "9999px",
+              background: "rgba(1, 10, 26, 0.94)",
+              border: "1px solid rgba(0, 229, 255, 0.45)",
+              backdropFilter: "blur(14px)",
+              boxShadow: "0 4px 20px rgba(0, 229, 255, 0.35)",
+            }}
+          >
+            <span
+              style={{
+                width: "5px",
+                height: "5px",
+                borderRadius: "50%",
+                background: "#00e5ff",
+                boxShadow: "0 0 8px #00e5ff",
+                animation: "pulse 1.6s ease-in-out infinite",
+              }}
+            />
+            <span
+              style={{
+                fontFamily: "'Inter', sans-serif",
+                fontSize: "0.68rem",
+                fontWeight: 700,
+                letterSpacing: "0.22em",
+                color: "#00e5ff",
+                textTransform: "uppercase",
+                textShadow: "0 0 10px rgba(0, 229, 255, 0.8)",
+              }}
+            >
+              Zathura Core Active
+            </span>
           </div>
-
-          {/* Glow divider */}
-          <div style={{
-            width: "120px",
-            height: "1px",
-            background: "linear-gradient(90deg, transparent, #00e5ff, rgba(212,175,55,0.8), transparent)",
-            boxShadow: "0 0 10px #00e5ff",
-          }} />
         </div>
       </Html>
     </group>
@@ -328,15 +378,15 @@ function SpaceOrbitals() {
         </mesh>
       </group>
 
-      {/* Orbit ring 2 – tilted gold */}
+      {/* Orbit ring 2 – tilted cyan */}
       <group ref={orb2} rotation={[Math.PI / 3, Math.PI / 6, 0]}>
         <mesh>
           <torusGeometry args={[7.8, 0.01, 8, 128]} />
-          <meshBasicMaterial color="#d4af37" transparent opacity={0.25} toneMapped={false} />
+          <meshBasicMaterial color="#00e5ff" transparent opacity={0.3} toneMapped={false} />
         </mesh>
         <mesh position={[7.8, 0, 0]}>
           <sphereGeometry args={[0.055, 8, 8]} />
-          <meshBasicMaterial color="#d4af37" toneMapped={false} />
+          <meshBasicMaterial color="#00e5ff" toneMapped={false} />
         </mesh>
       </group>
 
@@ -465,62 +515,103 @@ function RisingTechRings() {
 }
 
 /* ─────────────────────────────────────────────────────────────────────────────
-   Asgardian Energy Shield (Concave curve, beautiful glowing 3D geometry)
+   Asgardian Energy Shield (Curved metallic frame with profile blue lightning)
 ───────────────────────────────────────────────────────────────────────────── */
 function AsgardianShield() {
   const shieldRef = useRef<THREE.Group>(null);
   
   useFrame((_, delta) => {
     if (shieldRef.current) {
-      shieldRef.current.rotation.y += delta * 0.1;
+      shieldRef.current.rotation.y += delta * 0.08;
     }
   });
 
   return (
-    <group position={[0, -8.0, 0]} ref={shieldRef}>
-      {/* Intense Core Concave Plate */}
-      <mesh position={[0, -0.5, 0]}>
-        <cylinderGeometry args={[6.0, 4.0, 1.0, 64]} />
+    <group position={[0, -6.8, 0]} ref={shieldRef}>
+      {/* 1. Curved Metallic Dish Base Frame (Titanium Alloy Finish) */}
+      <mesh position={[0, -0.6, 0]}>
+        <cylinderGeometry args={[6.1, 4.2, 0.8, 64, 1, false]} />
         <meshStandardMaterial 
-          color="#111" 
-          emissive="#0044aa" 
-          emissiveIntensity={1} 
-          roughness={0.1}
-          metalness={0.8}
+          color="#0b1324" 
+          emissive="#002244" 
+          emissiveIntensity={0.6} 
+          roughness={0.15}
+          metalness={0.96}
         />
       </mesh>
 
-      {/* Outer Golden Ring Base on top edge of dish */}
-      <mesh rotation={[-Math.PI / 2, 0, 0]} position={[0, 0, 0]}>
-        <torusGeometry args={[6.0, 0.15, 16, 100]} />
-        <meshStandardMaterial color="#d4af37" emissive="#554400" roughness={0.2} metalness={0.9} />
-      </mesh>
-      
-      {/* Inner Rotating Runes/Rings */}
-      <mesh rotation={[-Math.PI / 2, 0, 0]} position={[0, 0.1, 0]}>
-        <ringGeometry args={[5.0, 5.8, 64]} />
-        <meshStandardMaterial color="#d4af37" emissive="#d4af37" emissiveIntensity={0.5} transparent opacity={0.6} side={THREE.DoubleSide} wireframe />
-      </mesh>
-      
-      <mesh rotation={[-Math.PI / 2, 0, 0]} position={[0, 0.15, 0]}>
-        <ringGeometry args={[4.2, 4.5, 32]} />
-        <meshBasicMaterial color="#00e5ff" transparent opacity={0.8} side={THREE.DoubleSide} toneMapped={false} />
+      {/* 2. Outer Polished Metallic Curved Rim Lip */}
+      <mesh rotation={[-Math.PI / 2, 0, 0]} position={[0, -0.12, 0]}>
+        <torusGeometry args={[6.1, 0.32, 24, 100]} />
+        <meshStandardMaterial 
+          color="#334155" 
+          emissive="#003866" 
+          emissiveIntensity={0.5} 
+          roughness={0.12} 
+          metalness={0.98} 
+        />
       </mesh>
 
-      {/* The Core Energy Dome Receptor */}
-      <mesh position={[0, -0.2, 0]}>
-        <sphereGeometry args={[4.5, 64, 32, 0, Math.PI * 2, 0, Math.PI / 2]} />
-        <meshBasicMaterial color="#0088ff" transparent opacity={0.15} blending={THREE.AdditiveBlending} depthWrite={false} side={THREE.DoubleSide} />
+      {/* 3. Profile Blue Lightning: Electric Cyan Profile Outer Ring */}
+      <mesh rotation={[-Math.PI / 2, 0, 0]} position={[0, 0.0, 0]}>
+        <torusGeometry args={[6.18, 0.08, 16, 120]} />
+        <meshBasicMaterial 
+          color="#00e5ff" 
+          toneMapped={false} 
+        />
+      </mesh>
+      
+      {/* 4. Secondary Electric Azure Profile Lightning Corona Aura */}
+      <mesh rotation={[-Math.PI / 2, 0, 0]} position={[0, 0.0, 0]}>
+        <torusGeometry args={[6.24, 0.14, 16, 100]} />
+        <meshBasicMaterial 
+          color="#0077ff" 
+          transparent 
+          opacity={0.45} 
+          blending={THREE.AdditiveBlending} 
+          toneMapped={false} 
+        />
       </mesh>
 
-      {/* Center Impact Receptor */}
-      <mesh position={[0, -0.1, 0]}>
-        <cylinderGeometry args={[1.5, 1.5, 0.1, 32]} />
-        <meshBasicMaterial color="#ffffff" transparent opacity={0.8} blending={THREE.AdditiveBlending} />
+      {/* 5. Inner Concentric Technological Ring Array */}
+      <mesh rotation={[-Math.PI / 2, 0, 0]} position={[0, 0.03, 0]}>
+        <ringGeometry args={[4.8, 5.8, 64]} />
+        <meshStandardMaterial 
+          color="#0077ff" 
+          emissive="#00e5ff" 
+          emissiveIntensity={0.8} 
+          transparent 
+          opacity={0.7} 
+          side={THREE.DoubleSide} 
+          wireframe 
+        />
       </mesh>
-      <mesh position={[0, 0.0, 0]}>
-        <cylinderGeometry args={[0.8, 0.8, 0.1, 32]} />
-        <meshBasicMaterial color="#ffaa00" toneMapped={false} />
+      
+      <mesh rotation={[-Math.PI / 2, 0, 0]} position={[0, 0.06, 0]}>
+        <ringGeometry args={[3.6, 4.4, 48]} />
+        <meshBasicMaterial 
+          color="#00e5ff" 
+          transparent 
+          opacity={0.85} 
+          side={THREE.DoubleSide} 
+          toneMapped={false} 
+        />
+      </mesh>
+
+      {/* 6. Center Impact Receptor & Metallic Collar (NO Oval Dome!) */}
+      <mesh rotation={[-Math.PI / 2, 0, 0]} position={[0, 0.07, 0]}>
+        <torusGeometry args={[1.5, 0.09, 16, 48]} />
+        <meshStandardMaterial color="#475569" roughness={0.1} metalness={0.98} />
+      </mesh>
+
+      <mesh position={[0, 0.04, 0]}>
+        <cylinderGeometry args={[1.4, 1.4, 0.08, 32]} />
+        <meshBasicMaterial color="#ffffff" transparent opacity={0.95} blending={THREE.AdditiveBlending} />
+      </mesh>
+
+      <mesh position={[0, 0.08, 0]}>
+        <cylinderGeometry args={[0.75, 0.75, 0.08, 32]} />
+        <meshBasicMaterial color="#00e5ff" toneMapped={false} />
       </mesh>
     </group>
   );
@@ -533,11 +624,12 @@ export function HeroGlobeScene({ isExploded, handleClick }: { isExploded: boolea
   return (
     <>
       <ambientLight intensity={0.5} />
-      <SpaceOrbitals />
-      
-      <group position={[0, 0, 0]}>
-        <group>
-          <SciFiGlobe isExploded={isExploded} onClick={handleClick} />
+      {/* Globe and Orbitals: Sleek, compact proportion */}
+      <group position={[0, 0.4, 0]} scale={0.62}>
+        <SpaceOrbitals />
+        <SciFiGlobe isExploded={isExploded} onClick={handleClick} />
+        {/* Metallic shield disk with blue lightning positioned right beneath globe */}
+        <group position={[0, 0.4, 0]}>
           <AsgardianShield />
         </group>
       </group>
@@ -562,7 +654,7 @@ export default function HeroGlobe() {
       `}</style>
 
       <Canvas
-        camera={{ position: [0, -1.5, 13], fov: 48 }}
+        camera={{ position: [0, -0.6, 17.5], fov: 46 }}
         gl={{ antialias: false, powerPreference: "high-performance" }}
         dpr={[1, 2]}
         style={{ width: "100%", height: "100%" }}

@@ -147,6 +147,7 @@ export default function Hero() {
             style={{ display: "flex", gap: "1rem", flexWrap: "wrap", justifyContent: "center", marginBottom: "3.5rem" }}
           >
             <button
+              suppressHydrationWarning
               id="hero-initiate-project"
               onClick={() => handleScroll("#contact")}
               style={{
@@ -175,6 +176,7 @@ export default function Hero() {
             </button>
 
             <button
+              suppressHydrationWarning
               id="hero-explore-legacy"
               onClick={() => handleScroll("#services")}
               style={{

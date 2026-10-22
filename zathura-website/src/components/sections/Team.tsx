@@ -115,6 +115,7 @@ function FounderCard({ member, index }: { member: (typeof team)[0]; index: numbe
             { icon: <XSocialIcon />, label: "Twitter" },
           ].map((social) => (
             <button
+              suppressHydrationWarning
               key={social.label}
               aria-label={social.label}
               style={{
@@ -418,6 +419,7 @@ function TeamCard({ member, index }: { member: (typeof team)[0]; index: number }
           { icon: <XSocialIcon />, label: "Twitter" },
         ].map((social) => (
           <button
+            suppressHydrationWarning
             key={social.label}
             aria-label={social.label}
             style={{

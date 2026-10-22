@@ -3,7 +3,7 @@ import Footer from "@/components/layout/Footer";
 
 export default function PrivacyPolicy() {
   return (
-    <div className="min-h-screen flex flex-col bg-[#020a14] text-white">
+    <div className="min-h-screen flex flex-col bg-[#010612] text-white">
       <main className="flex-grow pt-32 pb-16 px-6 max-w-4xl mx-auto w-full">
         <h1 className="text-4xl md:text-5xl font-heading font-bold mb-8 text-transparent bg-clip-text bg-gradient-to-r from-white to-white/60">
           Privacy Policy

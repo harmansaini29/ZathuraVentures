@@ -1,8 +1,15 @@
 "use client";
 
 import { useState, useRef, useEffect } from "react";
+import dynamic from "next/dynamic";
 import { motion, AnimatePresence } from "framer-motion";
-import { ArrowRight, Check, MapPin, Clock, Mail, Phone, Send, Globe, ChevronRight } from "lucide-react";
+import { ArrowRight, Check, Send, Shield, Sparkles } from "lucide-react";
+
+// Dynamically import client-side WebGL / Canvas harmonic cylinder
+const VerticalColumnMade = dynamic(
+  () => import("@/components/ui/VerticalColumnMade"),
+  { ssr: false }
+);
 
 /* ─── Animated Grid Background ────────────────────────────────────────────── */
 function GridBG() {
@@ -27,10 +34,10 @@ function StatusNodes() {
   if (!mounted) return null;
 
   const nodes = [
-    { label: "Server", status: "online", x: "8%", y: "18%" },
-    { label: "API", status: "online", x: "85%", y: "12%" },
-    { label: "Queue", status: "online", x: "92%", y: "75%" },
-    { label: "CDN", status: "online", x: "5%", y: "82%" },
+    { label: "Uplink", status: "online", x: "6%", y: "14%" },
+    { label: "Relay", status: "online", x: "92%", y: "18%" },
+    { label: "Zero-Knowledge", status: "online", x: "88%", y: "82%" },
+    { label: "Encrypted", status: "online", x: "8%", y: "86%" },
   ];
 
   return (
@@ -48,29 +55,43 @@ function StatusNodes() {
             <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-50" />
             <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-400" />
           </span>
-          <span className="font-mono text-[9px] text-white/20 uppercase tracking-widest">{n.label}</span>
+          <span className="font-mono text-[9px] text-white/30 uppercase tracking-widest">{n.label}</span>
         </motion.div>
       ))}
     </div>
   );
 }
 
-/* ─── Info Cards ──────────────────────────────────────────────────────────── */
-const INFO_ITEMS = [
-  { icon: MapPin, label: "Location", value: "India · Remote-First", accent: "#00e5ff" },
-  { icon: Clock, label: "Response", value: "Within 24 hours", accent: "#d4af37" },
-  { icon: Globe, label: "Availability", value: "Global Clients", accent: "#00e5ff" },
-  { icon: Mail, label: "Direct", value: "hello@zathura.dev", accent: "#d4af37" },
+const DELIVERABLES = [
+  {
+    title: "Enterprise SEO & Lighthouse 99+",
+    detail: "Sub-10ms Core Web Vitals & guaranteed top search engine optimization",
+  },
+  {
+    title: "1-Year High-Speed Cloud Hosting",
+    detail: "NVMe global edge CDN, automated zero-SSL & continuous deployment pipeline",
+  },
+  {
+    title: "24/7 Dedicated Architectural Support",
+    detail: "Round-the-clock priority incident telemetry with zero-loss SLA resilience",
+  },
+  {
+    title: "Autonomous AI & Spatial 3D Stacks",
+    detail: "Bespoke GPU WebGL shaders & deterministic vector AI integration",
+  },
+  {
+    title: "Zero-Trust Cryptographic Hardening",
+    detail: "Automated penetration defenses & distributed cryptographic integrity",
+  },
 ];
 
-/* ─── Main Contact Export ─────────────────────────────────────────────────── */
+/* ─── Main Connect Us Export ──────────────────────────────────────────────── */
 export default function CombinedCTA() {
   const [sent, setSent] = useState(false);
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [subject, setSubject] = useState("");
   const [message, setMessage] = useState("");
-  const [focused, setFocused] = useState<string | null>(null);
   const formRef = useRef<HTMLFormElement>(null);
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -80,266 +101,324 @@ export default function CombinedCTA() {
   };
 
   const reset = () => {
-    setSent(false);
     setName("");
     setEmail("");
     setSubject("");
     setMessage("");
+    setSent(false);
   };
 
   return (
     <section
       id="contact"
-      className="relative w-full min-h-screen flex items-center justify-center py-24 md:py-32 overflow-hidden bg-transparent"
+      className="relative w-full min-h-screen flex items-center justify-center pt-28 pb-24 md:pt-36 md:pb-32 overflow-hidden bg-[#010612] border-t border-[#00e5ff]/10"
     >
       <GridBG />
       <StatusNodes />
 
-      <div className="relative z-10 w-full max-w-[1200px] mx-auto px-6 md:px-12">
+      {/* Atmospheric Blue Lightning Glow */}
+      <div className="absolute top-1/2 left-1/4 -translate-y-1/2 w-[700px] h-[500px] bg-[radial-gradient(ellipse_at_center,rgba(0,229,255,0.08)_0%,transparent_70%)] pointer-events-none" />
+      <div className="absolute top-1/2 right-1/4 -translate-y-1/2 w-[700px] h-[500px] bg-[radial-gradient(ellipse_at_center,rgba(0,119,255,0.06)_0%,transparent_70%)] pointer-events-none" />
 
-        {/* Header */}
+      <div className="relative z-10 w-full max-w-[1440px] mx-auto px-6 md:px-12">
+
+        {/* Minimalist, High-Impact Header (Less Words, More Impact) */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="text-center mb-16"
+          className="text-center mb-12 sm:mb-16"
         >
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-white/10 bg-white/[0.015] mb-6 backdrop-blur-sm">
-            <span className="relative flex h-1.5 w-1.5">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-50" />
-              <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-emerald-400" />
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-[#00e5ff]/30 bg-[#061226]/80 mb-4 backdrop-blur-md shadow-[0_0_20px_rgba(0,229,255,0.15)]">
+            <span className="relative flex h-2 w-2">
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#00e5ff] opacity-50" />
+              <span className="relative inline-flex rounded-full h-2 w-2 bg-[#00e5ff]" />
             </span>
-            <span className="font-mono text-[10px] text-white/40 tracking-[0.25em] uppercase">Accepting Projects</span>
+            <span className="font-mono text-[10px] text-[#00e5ff] tracking-[0.25em] uppercase font-bold">
+              Direct Uplink · Secure Channel
+            </span>
           </div>
-          <h2 className="font-sans font-light text-4xl md:text-6xl lg:text-7xl text-white tracking-tight mb-4">
-            Start a <span className="font-semibold text-transparent bg-clip-text bg-gradient-to-r from-[#00e5ff] to-[#d4af37]">transmission.</span>
+          <h2 className="font-sans font-light text-4xl sm:text-5xl lg:text-6xl text-white tracking-tight mb-3 leading-[1.1]">
+            Elevate Your <span className="font-bold text-transparent bg-clip-text bg-gradient-to-r from-white via-[#a5f3fc] to-[#00e5ff]">Digital Horizon</span>
           </h2>
-          <p className="text-white/35 font-light text-lg max-w-xl mx-auto">
-            Every great partnership begins with a single message. Tell us your vision — we&apos;ll architect the rest.
+          <p className="text-[#8eaec9] font-light text-sm sm:text-base max-w-xl mx-auto leading-relaxed">
+            Direct high-throughput architectural transmission to Harman Saini and the core engineering team.
           </p>
         </motion.div>
 
-        <AnimatePresence mode="wait">
-          {!sent ? (
-            <motion.div
-              key="form"
-              initial={{ opacity: 0, y: 24 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -20 }}
-              transition={{ duration: 0.5 }}
-            >
-              {/* Split layout: Form + Info */}
-              <div className="grid grid-cols-1 lg:grid-cols-5 gap-8 lg:gap-12">
+        {/* Unified Command Console: 3 Things Properly Aligned & Level with Component */}
+        <div className="relative rounded-3xl border border-[#00e5ff]/25 bg-[#030a18]/90 backdrop-blur-xl shadow-[0_30px_90px_rgba(0,0,0,0.9),0_0_40px_rgba(0,229,255,0.12)] overflow-hidden">
+          
+          {/* Top Console Bar */}
+          <div className="px-6 py-3.5 border-b border-[#00e5ff]/15 bg-[#010612]/80 flex items-center justify-between">
+            <div className="flex items-center gap-2.5">
+              <span className="w-2.5 h-2.5 rounded-full bg-[#00e5ff] shadow-[0_0_8px_#00e5ff] inline-block" />
+              <span className="w-2.5 h-2.5 rounded-full bg-[#0077ff] inline-block" />
+              <span className="w-2.5 h-2.5 rounded-full bg-[#38bdf8] inline-block" />
+              <span className="font-mono text-[11px] text-[#8eaec9] ml-2 tracking-widest uppercase">
+                ZATHURA NEXUS CONSOLE · SECURE CHANNEL
+              </span>
+            </div>
+            <div className="flex items-center gap-2 font-mono text-[10px] text-[#00e5ff]">
+              <span className="w-1.5 h-1.5 rounded-full bg-[#00e5ff] animate-pulse" />
+              <span>LIVE TRANSMISSION READY</span>
+            </div>
+          </div>
 
-                {/* Left: Form (3 cols) */}
-                <div className="lg:col-span-3">
-                  <div className="p-8 md:p-10 rounded-3xl bg-white/[0.015] border border-white/[0.06] backdrop-blur-sm relative overflow-hidden">
-                    {/* Corner accent */}
-                    <div className="absolute top-0 left-0 w-20 h-20 pointer-events-none">
-                      <div className="absolute top-0 left-0 w-[1px] h-12 bg-gradient-to-b from-[#00e5ff]/40 to-transparent" />
-                      <div className="absolute top-0 left-0 h-[1px] w-12 bg-gradient-to-r from-[#00e5ff]/40 to-transparent" />
-                    </div>
-                    <div className="absolute bottom-0 right-0 w-20 h-20 pointer-events-none">
-                      <div className="absolute bottom-0 right-0 w-[1px] h-12 bg-gradient-to-t from-[#00e5ff]/40 to-transparent" />
-                      <div className="absolute bottom-0 right-0 h-[1px] w-12 bg-gradient-to-l from-[#00e5ff]/40 to-transparent" />
-                    </div>
+          {/* 3-Column Split: Left (Cylinder) | Middle (Pros & Benefits) | Right (Form) */}
+          <div className="grid grid-cols-1 lg:grid-cols-3 min-h-[640px]">
 
-                    <div className="flex items-center gap-3 mb-8">
-                      <div className="w-9 h-9 rounded-xl bg-[#00e5ff]/10 border border-[#00e5ff]/20 flex items-center justify-center">
-                        <Send size={14} className="text-[#00e5ff]" />
-                      </div>
-                      <div>
-                        <p className="font-sans text-sm font-medium text-white">New Transmission</p>
-                        <p className="font-mono text-[9px] text-white/25 uppercase tracking-widest">Encrypted · Secure</p>
-                      </div>
-                    </div>
-
-                    <form ref={formRef} onSubmit={handleSubmit} className="flex flex-col gap-5" suppressHydrationWarning>
-                      {/* Name + Email row */}
-                      <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-                        <div className="relative">
-                          <motion.label
-                            animate={{ color: focused === "name" ? "rgba(0,229,255,0.7)" : "rgba(255,255,255,0.25)" }}
-                            className="font-mono text-[9px] uppercase tracking-[0.2em] block mb-2"
-                          >Full Name</motion.label>
-                          <input
-                            suppressHydrationWarning
-                            type="text" required value={name} onChange={(e) => setName(e.target.value)}
-                            onFocus={() => setFocused("name")} onBlur={() => setFocused(null)}
-                            placeholder="Your name"
-                            className="w-full bg-white/[0.03] border border-white/[0.08] rounded-xl px-4 py-3.5 text-white text-sm font-sans placeholder:text-white/15 outline-none focus:border-[#00e5ff]/30 focus:bg-white/[0.05] transition-all"
-                          />
-                        </div>
-                        <div className="relative">
-                          <motion.label
-                            animate={{ color: focused === "email" ? "rgba(0,229,255,0.7)" : "rgba(255,255,255,0.25)" }}
-                            className="font-mono text-[9px] uppercase tracking-[0.2em] block mb-2"
-                          >Email</motion.label>
-                          <input
-                            suppressHydrationWarning
-                            type="email" required value={email} onChange={(e) => setEmail(e.target.value)}
-                            onFocus={() => setFocused("email")} onBlur={() => setFocused(null)}
-                            placeholder="name@company.com"
-                            className="w-full bg-white/[0.03] border border-white/[0.08] rounded-xl px-4 py-3.5 text-white text-sm font-sans placeholder:text-white/15 outline-none focus:border-[#00e5ff]/30 focus:bg-white/[0.05] transition-all"
-                          />
-                        </div>
-                      </div>
-
-                      {/* Subject */}
-                      <div>
-                        <motion.label
-                          animate={{ color: focused === "subject" ? "rgba(0,229,255,0.7)" : "rgba(255,255,255,0.25)" }}
-                          className="font-mono text-[9px] uppercase tracking-[0.2em] block mb-2"
-                        >Subject</motion.label>
-                        <input
-                          suppressHydrationWarning
-                          type="text" value={subject} onChange={(e) => setSubject(e.target.value)}
-                          onFocus={() => setFocused("subject")} onBlur={() => setFocused(null)}
-                          placeholder="Project inquiry, partnership, consultation..."
-                          className="w-full bg-white/[0.03] border border-white/[0.08] rounded-xl px-4 py-3.5 text-white text-sm font-sans placeholder:text-white/15 outline-none focus:border-[#00e5ff]/30 focus:bg-white/[0.05] transition-all"
-                        />
-                      </div>
-
-                      {/* Message */}
-                      <div>
-                        <motion.label
-                          animate={{ color: focused === "message" ? "rgba(0,229,255,0.7)" : "rgba(255,255,255,0.25)" }}
-                          className="font-mono text-[9px] uppercase tracking-[0.2em] block mb-2"
-                        >Message</motion.label>
-                        <textarea
-                          suppressHydrationWarning
-                          value={message} onChange={(e) => setMessage(e.target.value)}
-                          onFocus={() => setFocused("message")} onBlur={() => setFocused(null)}
-                          rows={5}
-                          placeholder="Describe your vision, timeline, and any specific requirements..."
-                          className="w-full bg-white/[0.03] border border-white/[0.08] rounded-xl px-4 py-3.5 text-white text-sm font-sans placeholder:text-white/15 outline-none focus:border-[#00e5ff]/30 focus:bg-white/[0.05] transition-all resize-none"
-                        />
-                      </div>
-
-                      {/* Submit */}
-                      <motion.button
-                        type="submit"
-                        whileHover={{ scale: 1.01 }}
-                        whileTap={{ scale: 0.99 }}
-                        className="group w-full py-4 rounded-xl font-sans font-semibold text-sm flex items-center justify-center gap-2 transition-all duration-300 relative overflow-hidden"
-                        style={{
-                          background: "linear-gradient(135deg, #00e5ff 0%, #0088ff 100%)",
-                          color: "#020a14",
-                        }}
-                      >
-                        {/* Shimmer overlay */}
-                        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700" />
-                        <span className="relative z-10 flex items-center gap-2">
-                          Transmit Message
-                          <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
-                        </span>
-                      </motion.button>
-                    </form>
-                  </div>
+            {/* ── 1. LEFT COLUMN: Circular Component (VerticalColumnMade) ── */}
+            <div className="relative flex flex-col justify-between border-b lg:border-b-0 lg:border-r border-[#00e5ff]/15 bg-[#010714] overflow-hidden min-h-[480px]">
+              
+              {/* Telemetry Header */}
+              <div className="px-6 py-3.5 border-b border-[#00e5ff]/15 flex items-center justify-between text-xs font-mono text-[#8eaec9] bg-[#020b18]/80">
+                <div className="flex items-center gap-2">
+                  <span className="w-2 h-2 rounded-full bg-[#00e5ff] animate-pulse" />
+                  <span className="text-white text-[11px] font-semibold tracking-wider uppercase">
+                    Harmonic Kinetic Cylinder
+                  </span>
                 </div>
+                <span className="text-[#00e5ff] text-[10px] uppercase tracking-widest font-mono">
+                  Drag to Rotate
+                </span>
+              </div>
 
-                {/* Right: Info Panel (2 cols) */}
-                <div className="lg:col-span-2 flex flex-col gap-5">
-                  {/* Info cards */}
-                  {INFO_ITEMS.map((item, i) => {
-                    const Icon = item.icon;
-                    return (
-                      <motion.div
-                        key={item.label}
-                        initial={{ opacity: 0, x: 20 }}
-                        whileInView={{ opacity: 1, x: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ delay: i * 0.08, duration: 0.5 }}
-                        className="group p-5 rounded-2xl bg-white/[0.015] border border-white/[0.06] hover:border-white/[0.12] hover:bg-white/[0.025] transition-all duration-300 flex items-center gap-4"
-                      >
-                        <div
-                          className="w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0 transition-colors duration-300"
-                          style={{ background: `${item.accent}10`, border: `1px solid ${item.accent}20` }}
-                        >
-                          <Icon size={16} style={{ color: item.accent }} />
-                        </div>
-                        <div>
-                          <p className="font-mono text-[9px] uppercase tracking-[0.2em] text-white/25 mb-1">{item.label}</p>
-                          <p className="font-sans text-sm text-white/70 font-medium">{item.value}</p>
-                        </div>
-                      </motion.div>
-                    );
-                  })}
+              {/* 3D Circular Component Rendering Area */}
+              <div className="relative flex-1 w-full h-[460px] sm:h-[500px] lg:h-full flex items-center justify-center overflow-hidden">
+                <VerticalColumnMade
+                  text="ZATHURA VENTURES ARCHITECTURAL CORE PROTOCOL "
+                  baseColor="#00e5ff"
+                  background="#010714"
+                  speed={80}
+                  scale={180}
+                  wave={70}
+                  dragSensitivity={100}
+                  style={{ width: "100%", height: "100%", minWidth: 0, minHeight: 0 }}
+                />
+              </div>
 
-                  {/* Direct email CTA */}
-                  <motion.a
-                    href="mailto:hello@zathura.dev"
-                    initial={{ opacity: 0, x: 20 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: 0.4, duration: 0.5 }}
-                    className="group mt-auto p-6 rounded-2xl border border-[#00e5ff]/15 bg-[#00e5ff]/[0.03] hover:bg-[#00e5ff]/[0.06] hover:border-[#00e5ff]/25 transition-all duration-300 flex items-center justify-between"
-                  >
-                    <div>
-                      <p className="font-sans text-sm font-medium text-white mb-1">Prefer email?</p>
-                      <p className="font-mono text-[10px] text-[#00e5ff]/60 tracking-wider">hello@zathura.dev</p>
-                    </div>
-                    <ChevronRight size={18} className="text-[#00e5ff]/40 group-hover:text-[#00e5ff] group-hover:translate-x-1 transition-all" />
-                  </motion.a>
+              {/* Bottom Telemetry Bar */}
+              <div className="px-6 py-3.5 border-t border-[#00e5ff]/15 flex items-center justify-between text-[10px] font-mono text-[#8eaec9] bg-[#020b18]/80">
+                <span className="flex items-center gap-1.5">
+                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
+                  <span>256-BIT ZK HANDSHAKE</span>
+                </span>
+                <span className="text-[#00e5ff] tracking-wider uppercase">
+                  DIRECT ROUTING ACTIVE
+                </span>
+              </div>
+
+            </div>
+
+            {/* ── 2. MIDDLE COLUMN: Pros and Benefits (Spacious, Normal Font Text) ── */}
+            <div className="border-b lg:border-b-0 lg:border-r border-[#00e5ff]/15 p-6 sm:p-8 flex flex-col justify-between bg-[#020919]/60">
+              <div>
+                {/* Header Tag */}
+                <div className="flex items-center gap-2 text-[#00e5ff] font-mono text-[11px] uppercase tracking-widest mb-1.5 font-semibold">
+                  <Shield size={14} />
+                  <span>Verified Deliverables</span>
+                </div>
+                <h3 className="font-sans font-bold text-xl text-white tracking-tight mb-2">
+                  Architectural Advantages
+                </h3>
+                <p className="font-sans text-xs sm:text-sm text-[#8eaec9] font-light leading-relaxed mb-6">
+                  Every system engineered with zero compromise on speed, security, and institutional SLA.
+                </p>
+
+                {/* Deliverables List: Clear, readable normal font text with right tick marks */}
+                <div className="space-y-3.5">
+                  {DELIVERABLES.map((item, i) => (
+                    <motion.div
+                      key={item.title}
+                      initial={{ opacity: 0, y: 10 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.4, delay: i * 0.05 }}
+                      className="flex items-center justify-between p-3.5 rounded-2xl bg-[#040e22]/90 border border-[#00e5ff]/20 backdrop-blur-md hover:border-[#00e5ff]/50 hover:shadow-[0_0_20px_rgba(0,229,255,0.12)] transition-all group"
+                    >
+                      {/* Left: Deliverable Description */}
+                      <div className="flex-1 pr-3">
+                        <h4 className="font-sans font-medium text-white text-sm group-hover:text-[#a5f3fc] transition-colors leading-snug">
+                          {item.title}
+                        </h4>
+                        <p className="font-sans text-xs text-[#8eaec9] font-light mt-1 leading-normal">
+                          {item.detail}
+                        </p>
+                      </div>
+
+                      {/* Right: Tick Mark as Bulletin */}
+                      <div className="w-7 h-7 rounded-full bg-[#00e5ff]/15 border border-[#00e5ff]/40 flex items-center justify-center text-[#00e5ff] shrink-0 group-hover:bg-[#00e5ff] group-hover:text-[#001221] shadow-[0_0_10px_rgba(0,229,255,0.25)] transition-all">
+                        <Check size={13} strokeWidth={2.8} />
+                      </div>
+                    </motion.div>
+                  ))}
                 </div>
               </div>
-            </motion.div>
-          ) : (
-            /* Success State */
-            <motion.div
-              key="success"
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-              className="max-w-lg mx-auto text-center py-16"
-            >
-              <motion.div
-                initial={{ scale: 0, rotate: -90 }}
-                animate={{ scale: 1, rotate: 0 }}
-                transition={{ delay: 0.15, type: "spring", stiffness: 260, damping: 20 }}
-                className="w-20 h-20 rounded-full mx-auto mb-8 flex items-center justify-center"
-                style={{ background: "linear-gradient(135deg, rgba(0,229,255,0.15) 0%, rgba(0,136,255,0.1) 100%)", border: "1px solid rgba(0,229,255,0.25)" }}
-              >
-                <Check className="text-[#00e5ff]" size={32} strokeWidth={3} />
-              </motion.div>
 
-              <motion.h3
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.3 }}
-                className="font-sans font-bold text-4xl text-white mb-3"
-              >
-                Transmission received.
-              </motion.h3>
-              <motion.p
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.4 }}
-                className="font-sans text-white/40 font-light text-lg mb-4"
-              >
-                Your message has been encrypted and delivered to our team.
-              </motion.p>
-              <motion.p
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ delay: 0.5 }}
-                className="font-mono text-[10px] text-[#00e5ff]/50 uppercase tracking-widest mb-10"
-              >
-                Expected response: &lt; 24 hours
-              </motion.p>
-              <motion.button
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ delay: 0.6 }}
-                onClick={reset}
-                className="font-sans text-sm text-white/25 hover:text-white/60 transition-colors"
-              >
-                Send another transmission →
-              </motion.button>
-            </motion.div>
-          )}
-        </AnimatePresence>
+              {/* Bottom SLA Telemetry */}
+              <div className="mt-6 pt-4 border-t border-[#00e5ff]/15 flex items-center justify-between text-[11px] font-mono text-[#8eaec9]">
+                <div className="flex items-center gap-2">
+                  <span className="w-2 h-2 rounded-full bg-emerald-400 shadow-[0_0_8px_#34d399]" />
+                  <span className="text-white text-xs">SLA: 100% On-Time Delivery</span>
+                </div>
+                <span className="text-[#00e5ff] text-[11px] font-bold">ZERO-LOSS GUARANTEE</span>
+              </div>
+            </div>
+
+            {/* ── 3. RIGHT COLUMN: Fast Project Transmission Form ── */}
+            <div className="p-6 sm:p-8 flex flex-col justify-between bg-[#020a1c]/70">
+              <AnimatePresence mode="wait">
+                {!sent ? (
+                  <motion.div
+                    key="form"
+                    initial={{ opacity: 0, x: 10 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    exit={{ opacity: 0, x: -10 }}
+                    transition={{ duration: 0.35 }}
+                    className="flex flex-col justify-between h-full"
+                  >
+                    <div>
+                      {/* Header Tag */}
+                      <div className="flex items-center gap-2 text-[#00e5ff] font-mono text-[11px] uppercase tracking-widest mb-1.5 font-semibold">
+                        <Send size={14} />
+                        <span>Secure Dispatch</span>
+                      </div>
+                      <h3 className="font-sans font-bold text-xl text-white tracking-tight mb-2">
+                        Initiate Transmission
+                      </h3>
+                      <p className="font-sans text-xs sm:text-sm text-[#8eaec9] font-light leading-relaxed mb-6">
+                        Direct high-priority dispatch with guaranteed response within 24 hours.
+                      </p>
+
+                      <form
+                        ref={formRef}
+                        onSubmit={handleSubmit}
+                        className="flex flex-col gap-4"
+                        suppressHydrationWarning
+                      >
+                        {/* Full Name */}
+                        <div>
+                          <label className="font-mono text-[10px] uppercase tracking-[0.2em] block mb-1.5 text-white/50">
+                            Full Name *
+                          </label>
+                          <input
+                            suppressHydrationWarning
+                            type="text"
+                            required
+                            value={name}
+                            onChange={(e) => setName(e.target.value)}
+                            placeholder="Harman Saini"
+                            className="w-full bg-white/[0.03] border border-white/[0.1] rounded-xl px-4 py-3 text-white text-sm font-sans placeholder:text-white/20 outline-none focus:border-[#00e5ff]/50 focus:bg-white/[0.06] transition-all"
+                          />
+                        </div>
+
+                        {/* Email Address */}
+                        <div>
+                          <label className="font-mono text-[10px] uppercase tracking-[0.2em] block mb-1.5 text-white/50">
+                            Work Email *
+                          </label>
+                          <input
+                            suppressHydrationWarning
+                            type="email"
+                            required
+                            value={email}
+                            onChange={(e) => setEmail(e.target.value)}
+                            placeholder="founder@venture.com"
+                            className="w-full bg-white/[0.03] border border-white/[0.1] rounded-xl px-4 py-3 text-white text-sm font-sans placeholder:text-white/20 outline-none focus:border-[#00e5ff]/50 focus:bg-white/[0.06] transition-all"
+                          />
+                        </div>
+
+                        {/* Project Scope */}
+                        <div>
+                          <label className="font-mono text-[10px] uppercase tracking-[0.2em] block mb-1.5 text-white/50">
+                            Project Scope
+                          </label>
+                          <input
+                            suppressHydrationWarning
+                            type="text"
+                            value={subject}
+                            onChange={(e) => setSubject(e.target.value)}
+                            placeholder="Spatial WebGL, Enterprise Protocol, AI Engine..."
+                            className="w-full bg-white/[0.03] border border-white/[0.1] rounded-xl px-4 py-3 text-white text-sm font-sans placeholder:text-white/20 outline-none focus:border-[#00e5ff]/50 focus:bg-white/[0.06] transition-all"
+                          />
+                        </div>
+
+                        {/* Message */}
+                        <div>
+                          <label className="font-mono text-[10px] uppercase tracking-[0.2em] block mb-1.5 text-white/50">
+                            Transmission Details *
+                          </label>
+                          <textarea
+                            suppressHydrationWarning
+                            required
+                            value={message}
+                            onChange={(e) => setMessage(e.target.value)}
+                            rows={3}
+                            placeholder="Describe your vision, scale, milestones, and architectural requirements..."
+                            className="w-full bg-white/[0.03] border border-white/[0.1] rounded-xl px-4 py-3 text-white text-sm font-sans placeholder:text-white/20 outline-none focus:border-[#00e5ff]/50 focus:bg-white/[0.06] transition-all resize-none"
+                          />
+                        </div>
+
+                        {/* Submit Button */}
+                        <motion.button
+                          suppressHydrationWarning
+                          type="submit"
+                          whileHover={{ scale: 1.01 }}
+                          whileTap={{ scale: 0.99 }}
+                          className="group w-full py-4 rounded-xl font-sans font-bold text-sm flex items-center justify-center gap-2 transition-all duration-300 relative overflow-hidden cursor-pointer shadow-xl mt-2"
+                          style={{
+                            background: "linear-gradient(135deg, #00e5ff 0%, #0088ff 100%)",
+                            color: "#020a14",
+                          }}
+                        >
+                          <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700" />
+                          <span className="relative z-10 flex items-center gap-2">
+                            Send Transmission
+                            <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
+                          </span>
+                        </motion.button>
+                      </form>
+                    </div>
+
+                    {/* Footer Telemetry */}
+                    <div className="mt-6 pt-4 border-t border-[#00e5ff]/15 flex items-center justify-between text-[11px] font-mono text-[#8eaec9]">
+                      <span className="text-white/60 text-xs">Encrypted Uplink</span>
+                      <span className="text-[#00e5ff] text-[11px] font-bold">256-BIT TLS 1.3</span>
+                    </div>
+                  </motion.div>
+                ) : (
+                  <motion.div
+                    key="sent"
+                    initial={{ opacity: 0, scale: 0.9 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    exit={{ opacity: 0, scale: 0.9 }}
+                    className="p-6 text-center flex flex-col items-center justify-center py-16 h-full"
+                  >
+                    <div className="w-16 h-16 rounded-2xl bg-emerald-400/10 border border-emerald-400/30 flex items-center justify-center text-emerald-400 mb-5 shadow-[0_0_25px_rgba(52,211,153,0.3)]">
+                      <Check size={28} />
+                    </div>
+                    <h3 className="font-sans font-bold text-2xl text-white mb-2">Transmission Received</h3>
+                    <p className="font-sans text-white/50 text-sm max-w-sm mb-6 leading-relaxed">
+                      Your transmission has been encrypted and routed directly to Harman Saini and the core architectural team. Expect a response shortly.
+                    </p>
+                    <button
+                      suppressHydrationWarning
+                      onClick={reset}
+                      className="px-6 py-2.5 rounded-xl bg-white/[0.04] border border-white/10 hover:bg-white/[0.08] text-white font-mono text-xs uppercase tracking-wider transition-all cursor-pointer"
+                    >
+                      Send Another Transmission
+                    </button>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </div>
+
+          </div>
+
+        </div>
+
       </div>
     </section>
   );

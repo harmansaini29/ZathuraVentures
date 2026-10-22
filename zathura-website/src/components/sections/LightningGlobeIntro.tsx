@@ -212,7 +212,7 @@ export default function LightningGlobeIntro({ onComplete }: { onComplete: () => 
         position: "fixed",
         inset: 0,
         zIndex: 9999,
-        background: "#061423", // Deep space background
+        background: "#010612", // Deep void black & sapphire background
         transition: "opacity 0.5s ease",
       }}
     >

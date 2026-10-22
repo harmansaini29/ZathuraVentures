@@ -197,6 +197,7 @@ export default function Testimonials() {
           }}
         >
           <button
+            suppressHydrationWarning
             id="testimonial-prev"
             onClick={prev}
             aria-label="Previous testimonial"
@@ -229,6 +230,7 @@ export default function Testimonials() {
           <div style={{ display: "flex", gap: "0.375rem" }}>
             {testimonials.map((_, i) => (
               <button
+                suppressHydrationWarning
                 key={i}
                 onClick={() => setCurrent(i)}
                 aria-label={`Testimonial ${i + 1}`}
@@ -247,6 +249,7 @@ export default function Testimonials() {
           </div>
 
           <button
+            suppressHydrationWarning
             id="testimonial-next"
             onClick={next}
             aria-label="Next testimonial"

@@ -4,9 +4,9 @@ import { Mail, Phone, MapPin, Code2, Globe } from "lucide-react";
 
 export default function Footer() {
   return (
-    <footer className="w-full bg-[#020a14] border-t border-white/5 relative z-10 pt-20 pb-8 mt-24">
+    <footer className="w-full bg-[#010612] border-t border-[#00e5ff]/10 relative z-10 pt-20 pb-8 mt-0">
       {/* Background Decorator */}
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_rgba(0,229,255,0.03)_0%,_transparent_50%)] pointer-events-none" />
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_rgba(0,229,255,0.05)_0%,_transparent_50%)] pointer-events-none" />
 
       <div className="max-w-[1400px] mx-auto px-6 relative z-10">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8 mb-16">
@@ -14,7 +14,7 @@ export default function Footer() {
           {/* Column 1: Brand */}
           <div className="flex flex-col gap-6">
             <div className="flex items-center gap-4">
-              <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-[#00e5ff] to-[#0088ff] flex items-center justify-center font-sans font-black text-black text-sm">
+              <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-[#00e5ff] to-[#0088ff] flex items-center justify-center font-sans font-black text-black text-sm shadow-[0_0_20px_rgba(0,229,255,0.3)]">
                 ZV
               </div>
               <div className="flex flex-col">
@@ -22,7 +22,7 @@ export default function Footer() {
                 <span className="font-mono text-[9px] text-[#00e5ff] uppercase tracking-[0.2em]">Ventures</span>
               </div>
             </div>
-            <p className="text-white/50 text-sm font-light leading-relaxed pr-4">
+            <p className="text-[#8eaec9] text-sm font-light leading-relaxed pr-4">
               Architecting your multi-billion dollar digital infrastructure. Building the future of enterprise reality, one secure protocol at a time.
             </p>
             <div className="flex items-center gap-3">
@@ -35,7 +35,7 @@ export default function Footer() {
                 <a 
                   key={i} 
                   href={social.href} 
-                  className="w-9 h-9 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-white/50 hover:text-[#00e5ff] hover:border-[#00e5ff]/30 hover:bg-[#00e5ff]/10 transition-all font-mono text-[10px] font-bold uppercase tracking-widest"
+                  className="w-9 h-9 rounded-full bg-[#061226] border border-[#00e5ff]/20 flex items-center justify-center text-[#8eaec9] hover:text-[#00e5ff] hover:border-[#00e5ff]/60 hover:bg-[#00e5ff]/15 transition-all font-mono text-[10px] font-bold uppercase tracking-widest shadow-md"
                 >
                   {social.label}
                 </a>
@@ -46,18 +46,22 @@ export default function Footer() {
           {/* Column 2: Quick Links */}
           <div className="flex flex-col gap-6 lg:pl-8">
             <h3 className="font-sans text-lg text-white font-semibold">Quick Links</h3>
-            <nav className="flex flex-col gap-4">
+            <nav className="flex flex-col gap-3.5">
               {[
                 { label: "Home", id: "unified-core" },
-                { label: "Services", id: "services" },
-                { label: "About Us", id: "team" },
-                { label: "Portfolio", id: "projects" },
+                { label: "Craft Core", id: "spiral-core" },
+                { label: "3D Architect", id: "founder-model" },
+                { label: "Metrics", id: "metrics" },
+                { label: "Network", id: "clients" },
+                { label: "Portfolio", id: "portfolio" },
+                { label: "Projects", id: "projects" },
+                { label: "Connect", id: "contact" },
                 { label: "Privacy Policy", id: "privacy-policy", path: "/privacy-policy" }
               ].map((link) => (
                 <a 
                   key={link.label} 
                   href={link.path || `/#${link.id}`}
-                  className="text-sm text-white/60 hover:text-[#00e5ff] transition-colors flex items-center gap-2 group w-fit"
+                  className="text-sm text-[#8eaec9] hover:text-[#00e5ff] transition-colors flex items-center gap-2 group w-fit"
                 >
                   <span className="text-[#00e5ff] opacity-0 -ml-4 group-hover:opacity-100 group-hover:ml-0 transition-all duration-300">→</span>
                   {link.label}
