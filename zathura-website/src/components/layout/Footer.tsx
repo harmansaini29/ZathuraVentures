@@ -1,6 +1,6 @@
 "use client";
 
-import { Mail, Phone, MapPin, Code2 } from "lucide-react";
+import { Mail, Phone, MapPin, Code2, ArrowUp, Activity } from "lucide-react";
 
 function GithubIcon({ className = "w-4 h-4" }: { className?: string }) {
   return (
@@ -19,58 +19,88 @@ function LinkedinIcon({ className = "w-4 h-4" }: { className?: string }) {
 }
 
 export default function Footer() {
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+
   return (
-    <footer className="w-full bg-[#010612] border-t border-white/10 relative z-10 pt-20 pb-8 mt-0">
-      <div className="max-w-[1400px] mx-auto px-6 relative z-10">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8 mb-16">
-          
-          {/* Column 1: Brand */}
-          <div className="flex flex-col gap-6">
-            <div className="flex items-center gap-4">
-              <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-[#00e5ff] to-[#0088ff] flex items-center justify-center font-sans font-black text-black text-sm shadow-[0_0_20px_rgba(0,229,255,0.3)]">
+    <footer className="w-full bg-[#010612] relative z-10 pt-20 sm:pt-24 pb-28 sm:pb-36 mt-20 sm:mt-28 md:mt-36">
+      {/* Top Luminous Glowing Rule Divider */}
+      <div className="absolute top-0 inset-x-0 h-[1px] bg-gradient-to-r from-transparent via-[#00e5ff]/30 to-transparent pointer-events-none" />
+
+      <div className="max-w-[1300px] mx-auto px-6 sm:px-8 relative z-10">
+
+        {/* Top Status Bar: Advanced Institutional Telemetry */}
+        <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 pb-8 mb-12 border-b border-white/10">
+          <div className="flex items-center gap-2.5">
+            <span className="relative flex h-2 w-2">
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
+              <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-400" />
+            </span>
+            <span className="font-mono text-xs uppercase tracking-widest text-emerald-400 font-semibold">
+              Institutional Core Active · 99.98% SLA Availability
+            </span>
+          </div>
+
+          <div className="flex items-center gap-5 font-mono text-[11px] text-gray-400">
+            <span className="flex items-center gap-1.5">
+              <Activity size={12} className="text-[#00e5ff]" />
+              <span>Low-Latency Relay Node</span>
+            </span>
+            <span className="text-[#00e5ff] font-semibold">ZATHURA v2.6 PROD</span>
+          </div>
+        </div>
+
+        {/* 4-Column Professional Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-8 mb-14">
+
+          {/* Column 1: Brand Architecture */}
+          <div className="flex flex-col gap-4">
+            <div className="flex items-center gap-3">
+              <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-[#00e5ff] to-[#0088ff] flex items-center justify-center font-sans font-black text-black text-xs shadow-[0_0_20px_rgba(0,229,255,0.35)]">
                 ZV
               </div>
               <div className="flex flex-col">
-                <span className="font-sans font-bold text-white text-xl tracking-tight uppercase">Zathura</span>
-                <span className="font-mono text-[9px] text-[#00e5ff] uppercase tracking-[0.2em]">Ventures</span>
+                <span className="font-sans font-bold text-white text-lg tracking-tight uppercase">Zathura</span>
+                <span className="font-mono text-[9px] text-[#00e5ff] uppercase tracking-[0.25em] font-semibold">Ventures</span>
               </div>
             </div>
-            <p className="text-[#8eaec9] text-sm font-light leading-relaxed pr-4">
-              Architecting scalable full-stack applications, self-healing AI systems, and institutional digital ecosystems with technical discipline and zero-loss SLA resilience.
+            <p className="text-gray-300 text-xs sm:text-sm font-light leading-relaxed">
+              Architecting scalable full-stack applications, autonomous AI engines, and institutional spatial platforms with zero-loss reliability.
             </p>
-            <div className="flex items-center gap-3">
-              <a 
-                href="https://www.linkedin.com/in/harman-saini-d29" 
+            <div className="flex items-center gap-2.5 pt-1">
+              <a
+                href="https://www.linkedin.com/in/harman-saini-d29"
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="LinkedIn"
-                className="w-9 h-9 rounded-full bg-[#061226] border border-white/10 flex items-center justify-center text-[#8eaec9] hover:text-[#00e5ff] hover:border-[#00e5ff]/60 hover:bg-[#00e5ff]/15 transition-all shadow-md"
+                className="w-8 h-8 rounded-full bg-[#061226] border border-white/10 flex items-center justify-center text-[#8eaec9] hover:text-[#00e5ff] hover:border-[#00e5ff]/60 hover:bg-[#00e5ff]/15 transition-all shadow-md"
               >
-                <LinkedinIcon className="w-4 h-4" />
+                <LinkedinIcon className="w-3.5 h-3.5" />
               </a>
-              <a 
-                href="https://github.com/harmansaini29" 
+              <a
+                href="https://github.com/harmansaini29"
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="GitHub"
-                className="w-9 h-9 rounded-full bg-[#061226] border border-white/10 flex items-center justify-center text-[#8eaec9] hover:text-[#00e5ff] hover:border-[#00e5ff]/60 hover:bg-[#00e5ff]/15 transition-all shadow-md"
+                className="w-8 h-8 rounded-full bg-[#061226] border border-white/10 flex items-center justify-center text-[#8eaec9] hover:text-[#00e5ff] hover:border-[#00e5ff]/60 hover:bg-[#00e5ff]/15 transition-all shadow-md"
               >
-                <GithubIcon className="w-4 h-4" />
+                <GithubIcon className="w-3.5 h-3.5" />
               </a>
-              <a 
-                href="mailto:zathuraventures@gmail.com" 
+              <a
+                href="mailto:zathuraventures@gmail.com"
                 aria-label="Email"
-                className="w-9 h-9 rounded-full bg-[#061226] border border-white/10 flex items-center justify-center text-[#8eaec9] hover:text-[#00e5ff] hover:border-[#00e5ff]/60 hover:bg-[#00e5ff]/15 transition-all shadow-md"
+                className="w-8 h-8 rounded-full bg-[#061226] border border-white/10 flex items-center justify-center text-[#8eaec9] hover:text-[#00e5ff] hover:border-[#00e5ff]/60 hover:bg-[#00e5ff]/15 transition-all shadow-md"
               >
-                <Mail size={15} />
+                <Mail size={13} />
               </a>
             </div>
           </div>
 
           {/* Column 2: Navigation Links */}
-          <div className="flex flex-col gap-6 lg:pl-8">
-            <h3 className="font-sans text-lg text-white font-semibold">Navigation</h3>
-            <nav className="flex flex-col gap-3.5">
+          <div className="flex flex-col gap-3.5 lg:pl-4">
+            <h3 className="font-sans text-sm sm:text-base text-white font-semibold">Navigation</h3>
+            <nav className="flex flex-col gap-2">
               {[
                 { label: "Home", id: "unified-core" },
                 { label: "Craft Core", id: "spiral-core" },
@@ -81,42 +111,42 @@ export default function Footer() {
                 { label: "Direct Uplink", id: "contact" },
                 { label: "Privacy Policy", id: "privacy-policy", path: "/privacy-policy" }
               ].map((link) => (
-                <a 
-                  key={link.label} 
+                <a
+                  key={link.label}
                   href={link.path || `/#${link.id}`}
-                  className="text-sm text-[#8eaec9] hover:text-[#00e5ff] transition-colors flex items-center gap-2 group w-fit"
+                  className="text-xs sm:text-sm text-gray-300 hover:text-[#00e5ff] transition-colors flex items-center gap-1.5 group w-fit"
                 >
-                  <span className="text-[#00e5ff] opacity-0 -ml-4 group-hover:opacity-100 group-hover:ml-0 transition-all duration-300">→</span>
+                  <span className="text-[#00e5ff] opacity-0 -ml-2 group-hover:opacity-100 group-hover:ml-0 transition-all duration-300 text-xs">→</span>
                   {link.label}
                 </a>
               ))}
             </nav>
           </div>
 
-          {/* Column 3: Verified Contact Info */}
-          <div className="flex flex-col gap-6">
-            <h3 className="font-sans text-lg text-white font-semibold">Contact & Uplink</h3>
-            <div className="flex flex-col gap-5">
-              <div className="flex items-start gap-4">
-                <MapPin size={20} className="text-[#00e5ff] shrink-0 mt-0.5" />
-                <span className="text-sm text-gray-300 leading-relaxed">
-                  Mumbai & Maharashtra, India<br/>Global Remote Engineering
+          {/* Column 3: Contact & Direct Inquiries */}
+          <div className="flex flex-col gap-3.5">
+            <h3 className="font-sans text-sm sm:text-base text-white font-semibold">Direct Communication</h3>
+            <div className="flex flex-col gap-3">
+              <div className="flex items-start gap-2.5">
+                <MapPin size={15} className="text-[#00e5ff] shrink-0 mt-0.5" />
+                <span className="text-xs sm:text-sm text-gray-300 leading-relaxed">
+                  Mumbai & Maharashtra, India<br />Global Remote Engineering
                 </span>
               </div>
-              <div className="flex items-center gap-4">
-                <Phone size={20} className="text-[#00e5ff] shrink-0" />
-                <a 
-                  href="tel:+917666222422" 
-                  className="text-sm text-gray-300 hover:text-[#00e5ff] transition-colors font-mono"
+              <div className="flex items-center gap-2.5">
+                <Phone size={15} className="text-[#00e5ff] shrink-0" />
+                <a
+                  href="tel:+917666222422"
+                  className="text-xs sm:text-sm text-gray-300 hover:text-[#00e5ff] transition-colors font-mono"
                 >
                   +91 76662 22422
                 </a>
               </div>
-              <div className="flex items-center gap-4">
-                <Mail size={20} className="text-[#00e5ff] shrink-0" />
-                <a 
-                  href="mailto:zathuraventures@gmail.com" 
-                  className="text-sm text-gray-300 hover:text-[#00e5ff] transition-colors font-mono"
+              <div className="flex items-center gap-2.5">
+                <Mail size={15} className="text-[#00e5ff] shrink-0" />
+                <a
+                  href="mailto:zathuraventures@gmail.com"
+                  className="text-xs sm:text-sm text-gray-300 hover:text-[#00e5ff] transition-colors font-mono"
                 >
                   zathuraventures@gmail.com
                 </a>
@@ -125,85 +155,73 @@ export default function Footer() {
           </div>
 
           {/* Column 4: Leadership & Community */}
-          <div className="flex flex-col gap-6">
-            <h3 className="font-sans text-lg text-white font-semibold">Leadership & Community</h3>
-            <p className="text-sm text-gray-300 leading-relaxed">
-              Founder of <strong className="text-white">GrowSphere</strong> (1,200+ developer community). AWS on Campus Leader & Google Student Ambassador.
-            </p>
-            <div className="flex flex-col gap-3 mt-2">
+          <div className="flex flex-col gap-3.5">
+
+            <div className="flex flex-col gap-2 mt-0.5">
+              <br />
               <a
                 href="https://www.linkedin.com/in/harman-saini-d29"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-3 text-sm text-gray-300 hover:text-[#00e5ff] transition-colors group"
+                className="flex items-center gap-2 text-xs sm:text-sm text-gray-300 hover:text-[#00e5ff] transition-colors group"
               >
-                <span className="w-7 h-7 rounded-full bg-white/5 border border-white/10 flex items-center justify-center font-mono text-[10px] font-bold uppercase group-hover:border-[#00e5ff]/40 group-hover:bg-[#00e5ff]/10 transition-all">in</span>
+                <span className="w-5 h-5 rounded-full bg-white/5 border border-white/10 flex items-center justify-center font-mono text-[9px] font-bold uppercase group-hover:border-[#00e5ff]/40 group-hover:bg-[#00e5ff]/10 transition-all">in</span>
                 LinkedIn Profile
               </a>
               <a
                 href="https://github.com/harmansaini29"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-3 text-sm text-gray-300 hover:text-[#00e5ff] transition-colors group"
+                className="flex items-center gap-2 text-xs sm:text-sm text-gray-300 hover:text-[#00e5ff] transition-colors group"
               >
-                <span className="w-7 h-7 rounded-full bg-white/5 border border-white/10 flex items-center justify-center font-mono text-[10px] font-bold uppercase group-hover:border-[#00e5ff]/40 group-hover:bg-[#00e5ff]/10 transition-all">gh</span>
+                <span className="w-5 h-5 rounded-full bg-white/5 border border-white/10 flex items-center justify-center font-mono text-[9px] font-bold uppercase group-hover:border-[#00e5ff]/40 group-hover:bg-[#00e5ff]/10 transition-all">gh</span>
                 GitHub Repositories
               </a>
               <a
                 href="mailto:zathuraventures@gmail.com"
-                className="flex items-center gap-3 text-sm text-gray-300 hover:text-[#00e5ff] transition-colors group"
+                className="flex items-center gap-2 text-xs sm:text-sm text-gray-300 hover:text-[#00e5ff] transition-colors group"
               >
-                <span className="w-7 h-7 rounded-full bg-white/5 border border-white/10 flex items-center justify-center font-mono text-[10px] font-bold uppercase group-hover:border-[#00e5ff]/40 group-hover:bg-[#00e5ff]/10 transition-all">@</span>
-                Direct Email Uplink
+                <span className="w-5 h-5 rounded-full bg-white/5 border border-white/10 flex items-center justify-center font-mono text-[9px] font-bold uppercase group-hover:border-[#00e5ff]/40 group-hover:bg-[#00e5ff]/10 transition-all">@</span>
+                Direct Email Dispatch
               </a>
             </div>
           </div>
 
         </div>
 
-        {/* Bottom Bar: Harman Saini OG Data & Profiles */}
-        <div className="pt-8 border-t border-white/10 flex flex-col md:flex-row items-center justify-between gap-6">
-          <div className="flex items-center gap-4">
-            <div className="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-[#00e5ff]">
-              <Code2 size={18} />
+        {/* Bottom Bar: Harman Saini OG Data, Verification, & Scroll to Top */}
+        <div className="pt-6 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-4">
+          <div className="flex items-center gap-3">
+            <div className="w-8 h-8 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center text-[#00e5ff]">
+              <Code2 size={15} />
             </div>
             <div className="flex flex-col">
-              <span className="font-sans text-sm text-white font-medium">Lead Engineer & Architect</span>
-              <span className="text-xs text-gray-400">Harman Saini · Zathura Ventures</span>
+              <span className="font-sans text-xs sm:text-sm text-white font-medium">Harman Saini</span>
+              <span className="text-[11px] text-gray-400">Principal Systems Architect · Zathura Ventures</span>
             </div>
           </div>
 
-          <div className="flex flex-wrap items-center gap-6 md:gap-8">
-            <a 
-              href="mailto:zathuraventures@gmail.com" 
-              className="text-xs text-gray-300 hover:text-[#00e5ff] transition-colors flex items-center gap-2 font-mono"
+          <div className="flex flex-wrap items-center gap-5">
+            <a
+              href="mailto:zathuraventures@gmail.com"
+              className="text-xs text-gray-300 hover:text-[#00e5ff] transition-colors flex items-center gap-1.5 font-mono"
             >
-              <Mail size={14} className="text-[#00e5ff]" /> zathuraventures@gmail.com
+              <Mail size={12} className="text-[#00e5ff]" /> zathuraventures@gmail.com
             </a>
-            <div className="flex items-center gap-5">
-              <a 
-                href="https://www.linkedin.com/in/harman-saini-d29" 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="text-xs text-gray-300 hover:text-[#00e5ff] transition-colors flex items-center gap-1.5"
-              >
-                <LinkedinIcon className="w-3.5 h-3.5 text-[#00e5ff]" /> LinkedIn
-              </a>
-              <a 
-                href="https://github.com/harmansaini29" 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="text-xs text-gray-300 hover:text-[#00e5ff] transition-colors flex items-center gap-1.5"
-              >
-                <GithubIcon className="w-3.5 h-3.5 text-[#00e5ff]" /> GitHub
-              </a>
-            </div>
+            <button
+              suppressHydrationWarning
+              onClick={scrollToTop}
+              className="px-3 py-1 rounded-full bg-white/5 hover:bg-white/10 border border-white/10 hover:border-[#00e5ff]/40 text-xs text-gray-300 hover:text-[#00e5ff] transition-all flex items-center gap-1.5 cursor-pointer"
+            >
+              <span>Back to Top</span>
+              <ArrowUp size={11} />
+            </button>
           </div>
         </div>
-        
+
         {/* Copyright */}
-        <div className="mt-8 text-center">
-          <span className="text-[10px] font-mono text-white/30 uppercase tracking-widest">
+        <div className="mt-6 text-center" suppressHydrationWarning>
+          <span className="text-[10px] font-mono text-gray-500 uppercase tracking-widest" suppressHydrationWarning>
             © {new Date().getFullYear()} Zathura Ventures. All rights reserved.
           </span>
         </div>

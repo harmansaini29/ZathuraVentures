@@ -169,7 +169,7 @@ export default function ClientLogosMarqueeSection() {
   return (
     <section
       id="clients"
-      className="relative w-full min-h-[75vh] py-44 md:py-64 bg-[#010612] overflow-hidden select-none flex flex-col justify-center"
+      className="relative w-full min-h-[55vh] py-28 md:py-36 bg-[#010612] overflow-hidden select-none flex flex-col justify-center"
     >
       {/* Ambient Blueish Lightning Radial Lights */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[1100px] h-[550px] bg-[radial-gradient(ellipse_at_center,rgba(0,229,255,0.08)_0%,transparent_70%)] pointer-events-none" />

@@ -6,7 +6,7 @@ import StatsCounter from "@/components/ui/StatsCounter";
 
 const STATS_DATA = [
   {
-    value: 1200,
+    value: 1600,
     suffix: "+",
     decimals: 0,
     label: "Developer Community",
@@ -27,11 +27,11 @@ const STATS_DATA = [
     detail: "Zero-Loss Delivery",
   },
   {
-    value: 93,
-    suffix: "%",
+    value: 11,
+    suffix: "+",
     decimals: 0,
-    label: "Elite+Gold Distinction",
-    detail: "NPTEL Certified (Java)",
+    label: "Professional Deployments",
+    detail: "High-Grade Systems Delivered",
   },
 ];
 

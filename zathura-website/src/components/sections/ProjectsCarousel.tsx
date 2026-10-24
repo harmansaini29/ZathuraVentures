@@ -2,10 +2,10 @@
 
 import React from "react";
 import { motion } from "framer-motion";
-import { Sparkles, Layers } from "lucide-react";
-import { CylinderCarousel } from "@/components/ui/cylinder-carousel";
+import { Layers } from "lucide-react";
+import { PerspectiveCarousel, PerspectiveCarouselItem } from "@/components/ui/perspective-carousel";
 
-const PROJECT_IMAGES = [
+const PROJECT_ITEMS: PerspectiveCarouselItem[] = [
   {
     title: "Harriot Smart Occupancy Agent",
     alt: "Next.js · FastAPI · LangGraph · OpenAI",
@@ -27,18 +27,18 @@ const PROJECT_IMAGES = [
     src: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&q=80&w=1280",
   },
   {
-    title: "Aegis.AI Neuro-Behavioral Anti-Bot",
+    title: "Aegis.AI Neuro-Defense",
     alt: "Node.js · Python · Scikit-Learn · Isolation Forest",
     src: "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?auto=format&fit=crop&q=80&w=1280",
   },
   {
     title: "GrowSphere Community Core",
-    alt: "1,200+ Builders · NEAR AI · Apache Kafka · Devcon",
+    alt: "1,600+ Builders · NEAR AI · Apache Kafka · Devcon",
     src: "https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&q=80&w=1280",
   },
   {
     title: "Zathura Ventures AI Core",
-    alt: "Full-Stack AI Architecture · Next.js · Cloud Infrastructure",
+    alt: "Full-Stack AI Architecture · Next.js · Multi-Agent Systems",
     src: "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&q=80&w=1280",
   },
   {
@@ -49,23 +49,45 @@ const PROJECT_IMAGES = [
 ];
 
 export default function ProjectsCarousel() {
+  const [slideWidth, setSlideWidth] = React.useState(240);
+
+  React.useEffect(() => {
+    const handleResize = () => {
+      if (typeof window !== "undefined") {
+        if (window.innerWidth < 640) {
+          setSlideWidth(200);
+        } else if (window.innerWidth < 1024) {
+          setSlideWidth(230);
+        } else {
+          setSlideWidth(260);
+        }
+      }
+    };
+    handleResize();
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
   return (
     <section
       id="projects"
-      className="relative w-full py-24 sm:py-32 md:py-36 overflow-hidden bg-[#010612] flex flex-col items-center justify-center select-none"
+      className="relative w-full min-h-[80vh] py-28 sm:py-36 md:py-40 overflow-hidden bg-[#010612] flex flex-col items-center justify-center select-none"
     >
-      {/* Centered System Header */}
+      {/* Background Ambient Radial Glow */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[1100px] h-[550px] bg-[radial-gradient(ellipse_at_center,rgba(0,229,255,0.05)_0%,rgba(0,119,255,0.02)_50%,transparent_75%)] pointer-events-none" />
+
+      {/* Centered Section Header with Generous Top Clearance */}
       <div className="relative z-10 w-full max-w-4xl mx-auto px-6 text-center mb-10 sm:mb-16">
         <motion.div
           initial={{ opacity: 0, y: 15 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
-          className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-white/10 bg-white/[0.04] mb-4 backdrop-blur-md shadow-sm"
+          className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-white/10 bg-white/[0.04] mb-3 backdrop-blur-md shadow-sm"
         >
           <Layers size={14} className="text-[#00e5ff]" />
           <span className="font-mono text-[10px] sm:text-[11px] text-white/80 uppercase tracking-[0.25em] font-semibold">
-            3D Cylinder Carousel · Harman Saini Projects
+            Perspective 3D Carousel · Harman Saini Deployments
           </span>
         </motion.div>
 
@@ -74,7 +96,7 @@ export default function ProjectsCarousel() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5, delay: 0.1 }}
-          className="font-sans font-black text-4xl sm:text-5xl lg:text-6xl text-white tracking-tight leading-tight mb-3"
+          className="font-sans font-black text-3xl sm:text-5xl lg:text-6xl text-white tracking-tight leading-tight mb-3"
         >
           Featured Deployments
         </motion.h2>
@@ -86,24 +108,40 @@ export default function ProjectsCarousel() {
           transition={{ duration: 0.5, delay: 0.2 }}
           className="text-[#8eaec9] font-light text-sm sm:text-base max-w-xl mx-auto leading-relaxed"
         >
-          Explore production AI decision pipelines, automated FinTech backends, full-stack enterprise platforms, and community ecosystems in infinite 3D.
+          Explore production AI decision pipelines, automated FinTech backends, full-stack enterprise platforms, and community ecosystems in infinite 3D perspective.
         </motion.p>
       </div>
 
-      {/* 3D Infinite CSS Cylinder Carousel: Wide, Perfectly Curved Inside */}
-      <div className="relative z-10 w-full max-w-[1500px] mx-auto px-4 sm:px-6 h-[600px] sm:h-[660px] flex items-center justify-center">
-        <CylinderCarousel
-          images={PROJECT_IMAGES}
-          cardWidth={310}
-          animationDuration={28}
-          cardClassName="border border-white/20 shadow-[0_25px_60px_rgba(0,0,0,0.95)] hover:border-[#00e5ff]/60 transition-all duration-300"
+      {/* 3D Perspective Carousel Container with Generous Spacing and Depth */}
+      <div className="relative z-10 w-full max-w-[1400px] mx-auto px-4 h-[480px] sm:h-[540px] md:h-[580px] flex items-center justify-center">
+        {/* Soft edge fade masks on sides with deep void black */}
+        <div className="absolute left-0 top-0 bottom-0 w-24 sm:w-44 md:w-64 bg-gradient-to-r from-[#010612] via-[#010612]/90 to-transparent pointer-events-none z-20" />
+        <div className="absolute right-0 top-0 bottom-0 w-24 sm:w-44 md:w-64 bg-gradient-to-l from-[#010612] via-[#010612]/90 to-transparent pointer-events-none z-20" />
+
+        <PerspectiveCarousel
+          items={PROJECT_ITEMS}
+          defaultActiveIndex={1}
+          loop={true}
+          slideWidth={slideWidth}
+          rotationStep={45}
+          inactiveScale={0.82}
+          transition={{
+            type: "spring",
+            stiffness: 280,
+            damping: 30,
+            mass: 0.8,
+          }}
+          className="w-full h-full"
+          labelClassName="font-sans font-semibold text-white text-sm sm:text-base tracking-tight"
+          imageClassName="rounded-xl border border-white/10 hover:border-[#00e5ff]/50 shadow-2xl transition-all duration-300"
+          controlsClassName="border-[#00e5ff]/20 bg-[#040d1e]/85 text-[#00e5ff] backdrop-blur-xl shadow-[0_0_30px_rgba(0,229,255,0.2)] dark:border-[#00e5ff]/20 dark:bg-[#040d1e]/85 dark:text-[#00e5ff]"
         />
       </div>
 
-      {/* Status Footer Pill */}
-      <div className="relative z-10 mt-8 sm:mt-12 flex items-center gap-2 font-mono text-[11px] text-white/50 tracking-wider uppercase">
+      {/* Hand Swipe / Gesture Telemetry Pill */}
+      <div className="relative z-10 mt-6 sm:mt-8 flex items-center gap-2 font-mono text-[10px] sm:text-[11px] text-white/50 tracking-wider uppercase">
         <span className="w-1.5 h-1.5 rounded-full bg-[#00e5ff] animate-pulse" />
-        <span>Continuous 360° Cylinder Loop · Hover to Pause</span>
+        <span>Swipe with hands · Drag or Arrow Keys to Navigate</span>
       </div>
     </section>
   );

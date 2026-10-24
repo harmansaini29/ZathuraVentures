@@ -40,7 +40,7 @@ const riseVariants: Variants = {
 };
 
 const STATS = [
-  { label: "Community Founder", value: "GrowSphere", sub: "1,200+ Developers" },
+  { label: "Community Founder", value: "GrowSphere", sub: "1,600+ Developers" },
   { label: "Hackathons", value: "2× Winner", sub: "National Finalist" },
   { label: "Production Systems", value: "8+ Platforms", sub: "Deployed & Scaled" },
   { label: "Core Focus", value: "AI & Full-Stack", sub: "Low-Latency Engines" },

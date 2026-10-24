@@ -5,11 +5,9 @@ import dynamic from "next/dynamic";
 import { motion } from "framer-motion";
 import StatsNumbersSection from "@/components/sections/StatsNumbersSection";
 import ClientLogosMarqueeSection from "@/components/sections/ClientLogosMarqueeSection";
-import ProjectsCarousel from "@/components/sections/ProjectsCarousel";
-import CombinedCTA from "@/components/sections/CombinedCTA";
 import Footer from "@/components/layout/Footer";
 
-// Dynamically import heavy WebGL / 3D Canvas sections — no SSR for flawless hydration & 60fps performance
+// Dynamically import heavy WebGL / 3D Canvas & Interactive sections — no SSR for flawless hydration & 60fps performance
 const LightningGlobeIntro = dynamic(
   () => import("@/components/sections/LightningGlobeIntro"),
   { ssr: false }
@@ -24,6 +22,14 @@ const SpiralGlassHollow = dynamic(
 );
 const FounderGLBSection = dynamic(
   () => import("@/components/sections/FounderGLBSection"),
+  { ssr: false }
+);
+const ProjectsCarousel = dynamic(
+  () => import("@/components/sections/ProjectsCarousel"),
+  { ssr: false }
+);
+const CombinedCTA = dynamic(
+  () => import("@/components/sections/CombinedCTA"),
   { ssr: false }
 );
 

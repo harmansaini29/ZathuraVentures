@@ -163,7 +163,7 @@ export default function FounderGLBSection() {
             </p>
 
             <p className="text-[#8eaec9]/80 text-xs sm:text-sm font-light leading-relaxed">
-              Founder of <strong className="text-white font-medium">GrowSphere</strong> (1,200+ member developer community across Mumbai), leading technical workshops & ecosystem collaborations with NEAR AI, Devcon, and Apache Kafka. AWS on Campus Leader & Google Student Ambassador.
+              Founder of <strong className="text-white font-medium">GrowSphere</strong> (1,600+ member developer community across Mumbai), leading technical workshops & ecosystem collaborations with NEAR AI, Devcon, and Apache Kafka. AWS on Campus Leader & Google Student Ambassador.
             </p>
 
             {/* Action Buttons */}

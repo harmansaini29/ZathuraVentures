@@ -188,6 +188,7 @@ export function SpotlightNavbar({
     return (
         <div className={cn("fixed top-0 left-0 right-0 z-[1000] flex justify-center pt-3 sm:pt-5 pointer-events-none px-3 sm:px-6", className)}>
             <nav
+                suppressHydrationWarning
                 ref={navRef}
                 className={cn(
                     "spotlight-nav spotlight-nav-bg glass-border spotlight-nav-shadow pointer-events-auto",
