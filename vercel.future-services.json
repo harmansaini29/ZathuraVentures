@@ -1,0 +1,30 @@
+{
+  "$comment": "Future multi-service configuration with Attendance-System enabled",
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "services": {
+    "zathura-website": {
+      "root": "zathura-website",
+      "framework": "nextjs",
+      "bindings": [
+        {
+          "type": "service",
+          "service": "attendance-system",
+          "format": "url",
+          "env": "ATTENDANCE_SYSTEM_URL"
+        }
+      ]
+    },
+    "attendance-system": {
+      "root": "Attendance-System",
+      "runtime": "python"
+    }
+  },
+  "rewrites": [
+    {
+      "source": "/(.*)",
+      "destination": {
+        "service": "zathura-website"
+      }
+    }
+  ]
+}
